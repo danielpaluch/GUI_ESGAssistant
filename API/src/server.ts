@@ -10,8 +10,10 @@ app.use(cors({
     origin:["http://localhost:4200"]
 }))
 
-app.get("/api", (req, res)=>{
-})
+app.get('/api/test', (req, res) => {
+    console.log('got request')
+    res.json({ message: 'answer from Node.js' });
+  });
 
 console.log(process.env.MONGODB_URI)
 connectDB();

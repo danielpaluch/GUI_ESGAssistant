@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "start cmd /k \"cd API && npm start\" & cd GUI && ng serve"
+    "start": "start cmd /k \"cd API && npm start\" & cd GUI && npm start"
   },
   "keywords": [],
   "author": "",

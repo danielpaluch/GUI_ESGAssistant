@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'GUI';
+
+  constructor(private http: HttpClient){}
+
+  request(){
+    this.http.get('/api/test').subscribe((response) => {
+      console.log('answer from server by proxy:', response);
+    });
+  }
 }
