@@ -1,4 +1,83 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import 'theme';
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+//APP FONT
+@mixin font-xl{
+  font-size: 30px;
+  font-style: normal;
+  line-height: 36px;
+}
+
+@mixin font-l{
+  font-size: 18px;
+  font-style: normal;
+  line-height: 24px;
+}
+
+@mixin font-m{
+  font-size: 14px;
+  font-style: normal;
+  line-height: 22px
+}
+
+@mixin font-s{
+  font-size: 12px;
+  font-style: normal;
+  line-height: 22px;
+}
+
+@mixin bold{
+  font-weight: 600;
+}
+
+@mixin regular{
+  font-weight: 400;
+}
+
+.bold-txt-xl{
+  @include font-xl;
+  @include bold;
+}
+
+.regular-txt-xl{
+  @include font-xl;
+  @include regular;
+}
+
+.bold-txt-l{
+  @include font-l;
+  @include bold;
+}
+
+.regular-txt-l{
+  @include font-l;
+  @include regular;
+}
+
+.bold-txt-m{
+  @include font-m;
+  @include bold;
+}
+
+.regular-txt-m{
+  @include font-m;
+  @include regular;
+}
+
+.bold-txt-s{
+  @include font-s;
+  @include bold;
+}
+
+.regular-txt-s{
+  @include font-s;
+  @include regular;
+}
+
+
