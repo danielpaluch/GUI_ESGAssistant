@@ -1,4 +1,4 @@
-@import "../../../theme";
+@import "../../../styles";
 
 
 .main{
@@ -9,7 +9,7 @@
     margin: 16px;
     padding: 16px;
     display: flex;
-    background-color:#295c57;
+    background-color:$primary-color;
     border-radius: 50%;
 
     mat-icon{
