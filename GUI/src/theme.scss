@@ -1,0 +1,97 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary-color: #295c57;
+
+$primary: (
+  50: #ffffff,
+  100: #dde6f3,
+  200: #b4c9e4,
+  300: #7fa3d1,
+  400: #6992c9,
+  500: var(--$primary-color),
+  600: #4072b4,
+  700: #38649d,
+  800: #305687,
+  900: #284770,
+  A100: #ffffff,
+  A200: #dde6f3,
+  A400: #6992c9,
+  A700: #38649d,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$accent: (
+  50: #ffffff,
+  100: #fff7f4,
+  200: #fecdbd,
+  300: #fc9977,
+  400: #fc8259,
+  500: #d2c5f2,
+  600: #fa551d,
+  700: #f44205,
+  800: #d63a04,
+  900: #b83204,
+  A100: #ffffff,
+  A200: #fff7f4,
+  A400: #fc8259,
+  A700: #f44205,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+
+$bv-palette-primary: mat.define-palette($primary);
+$bv-palette-accent:  mat.define-palette($accent);
+
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: $bv-palette-primary,
+    accent: $bv-palette-accent,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+
+@include mat.core-theme($theme);
+@include mat.button-theme($theme);
+@include mat.all-component-themes($theme);
+
+//COLOR THEME
+//$primary-color: mat.get-color-from-palette($primary);
+$accent-color: mat.get-color-from-palette($accent);
+$primary: map-get($theme, primary);
+$accent: map-get($theme, accent);
+$warn: map-get($theme, warn);

@@ -1,0 +1,39 @@
+@import "../../../styles";
+
+
+.main{
+  display: flex;
+  width: 100%;
+
+  &-logo{
+    margin: 16px;
+    padding: 16px;
+    display: flex;
+    background-color:$primary-color;
+    border-radius: 50%;
+
+    mat-icon{
+      color:#d2c5f2;
+      height: 48px;
+      width: 48px;
+      font-size: 48px;
+    }
+  }
+
+  &-buttons{
+    margin: 16px;
+    padding: 16px 32px;
+    width: 100%;
+    background-color: #295c57;
+    border-radius: 40px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 16px;
+    align-items: center;
+
+
+    .nav-item{
+    }
+  }
+
+}
