@@ -1,12 +1,30 @@
-import { ApolloServer } from "apollo-server";
+// Import necessary modules
+import { ApolloServer } from "apollo-server-express";
+import cors from "cors";
+import express from "express";
+import { createServer } from "http";
 import { schema } from "./schema";
-const port = 5000;
+require("dotenv").config();
+const PORT = 5000;
 
-export const server = new ApolloServer({
+const app = express();
+const serverHttp = createServer(app);
+
+app.use(cors());
+
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:4200"],
+  })
+);
+
+const apollo = new ApolloServer({
   schema,
 });
+apollo.applyMiddleware({ app });
+console.log(process.env.MONGODB_URI);
 
-// 2
-server.listen({ port }).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+serverHttp.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}/graphql`);
 });
