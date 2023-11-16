@@ -1,4 +1,4 @@
-import { extendType, objectType } from "nexus";
+import { extendType, nonNull, objectType, stringArg } from "nexus";
 import { NexusGenObjects } from "../../nexus-typegen";
 
 export const User = objectType({
@@ -32,6 +32,31 @@ export const UserQuery = extendType({
     t.nonNull.list.nonNull.field("feed", {
       type: "User",
       resolve: () => users,
+    });
+  },
+});
+
+export const UserMutation = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.nonNull.field("createUser", {
+      type: "User",
+      args: {
+        name: nonNull(stringArg()),
+        email: nonNull(stringArg()),
+        password: nonNull(stringArg()),
+      },
+
+      resolve: (parent, args, context) => {
+        const newUser = {
+          id: users.length + 1,
+          name: args.name,
+          email: args.email,
+          password: args.password,
+        };
+        users.push(newUser);
+        return newUser;
+      },
     });
   },
 });
