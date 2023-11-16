@@ -1,30 +1,45 @@
-// Import necessary modules
-import { ApolloServer } from "apollo-server-express";
+// Server modules
+// Apollo Server
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4";
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+// Express
 import cors from "cors";
 import express from "express";
 import { createServer } from "http";
-import { schema } from "./schema";
-require("dotenv").config();
+// MongoDB
+import "dotenv/config";
+import connectDB from "./db/connect";
 const PORT = 5000;
 
-const app = express();
-const serverHttp = createServer(app);
+// Schema
+import { schema } from "./schema";
 
-app.use(cors());
+const startServer = async () => {
+  const app = express();
+  const httpServer = createServer(app);
 
-app.use(
-  cors({
-    credentials: true,
-    origin: ["http://localhost:4200"],
-  })
-);
+  const apollo = new ApolloServer({
+    schema,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  });
 
-const apollo = new ApolloServer({
-  schema,
-});
-apollo.applyMiddleware({ app });
-console.log(process.env.MONGODB_URI);
+  await apollo.start();
 
-serverHttp.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/graphql`);
-});
+  app.use(cors());
+  app.use(
+    "/graphql",
+    cors<cors.CorsRequest>({ origin: "http://localhost:4200" }),
+    express.json(),
+    expressMiddleware(apollo)
+  );
+
+  connectDB();
+
+  await new Promise<void>((resolve) =>
+    httpServer.listen({ port: PORT }, resolve)
+  );
+  console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`);
+};
+
+startServer();
