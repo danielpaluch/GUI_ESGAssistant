@@ -1,83 +1,87 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat;
-@import 'theme';
-
+@use "@angular/material" as mat;
+@import "theme";
 
 @include mat.core();
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 //APP FONT
-@mixin font-xl{
+@mixin font-xl {
   font-size: 30px;
   font-style: normal;
   line-height: 36px;
 }
 
-@mixin font-l{
+@mixin font-l {
   font-size: 18px;
   font-style: normal;
   line-height: 24px;
 }
 
-@mixin font-m{
+@mixin font-m {
   font-size: 14px;
   font-style: normal;
-  line-height: 22px
+  line-height: 22px;
 }
 
-@mixin font-s{
+@mixin font-s {
   font-size: 12px;
   font-style: normal;
   line-height: 22px;
 }
 
-@mixin bold{
+@mixin bold {
   font-weight: 600;
 }
 
-@mixin regular{
+@mixin regular {
   font-weight: 400;
 }
 
-.bold-txt-xl{
+.bold-txt-xl {
   @include font-xl;
   @include bold;
 }
 
-.regular-txt-xl{
+.regular-txt-xl {
   @include font-xl;
   @include regular;
 }
 
-.bold-txt-l{
+.bold-txt-l {
   @include font-l;
   @include bold;
 }
 
-.regular-txt-l{
+.regular-txt-l {
   @include font-l;
   @include regular;
 }
 
-.bold-txt-m{
+.bold-txt-m {
   @include font-m;
   @include bold;
 }
 
-.regular-txt-m{
+.regular-txt-m {
   @include font-m;
   @include regular;
 }
 
-.bold-txt-s{
+.bold-txt-s {
   @include font-s;
   @include bold;
 }
 
-.regular-txt-s{
+.regular-txt-s {
   @include font-s;
   @include regular;
 }

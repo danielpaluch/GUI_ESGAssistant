@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {EmissionFactorRoutingModule} from "../emission-factor/emission-factor-routing.module";
-import {MainComponent} from "./main/main.component";
-
-
+import { MainComponent } from './main/main.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
+  },
+  {
+    path: 'test',
+    component: TestComponent,
   },
   {
     path: 'emission-factor',
     loadChildren: () =>
       import('../emission-factor/emission-factor.module').then(
-        (m) => m.EmissionFactorModule,
+        (m) => m.EmissionFactorModule
       ),
   },
-  // { path: '',   redirectTo: '/emission-factor', pathMatch: 'full' },
-  // { path: 'second-component', component: SecondComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ShellRoutingModule { }
+export class ShellRoutingModule {}
