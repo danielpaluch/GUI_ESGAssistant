@@ -1,0 +1,22 @@
+:host{
+  grid-area: sd;
+  background: var(--primary, #163564);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  img{
+
+    width: 128px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px;
+  }
+  app-nav-item {
+    display: flex;
+    margin-top: auto;
+    justify-content: center;
+    padding: 30px 40px;
+  }
+}

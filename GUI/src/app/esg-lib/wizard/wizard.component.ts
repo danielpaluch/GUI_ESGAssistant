@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-wizard',
   templateUrl: './wizard.component.html',
+  standalone: true,
   styleUrls: ['./wizard.component.scss']
 })
 export class WizardComponent {

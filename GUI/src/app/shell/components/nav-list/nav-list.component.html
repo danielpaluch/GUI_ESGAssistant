@@ -1,0 +1,20 @@
+<div class="nav-list regular-txt-l">
+  @for (nav of navigationConfig; track nav.title) {
+  <app-nav-item
+    [icon]="nav.icon"
+    [title]="nav.title"
+    [route]="nav.route"
+  >
+  </app-nav-item>
+  }
+
+<!--  <a href="#">-->
+<!--    <mat-icon>home</mat-icon>-->
+<!--    <span>Overview</span>-->
+<!--  </a>-->
+<!--  <a href="#">ESG</a>-->
+<!--  <a href="#">Reports</a>-->
+<!--  <a href="#">Management</a>-->
+<!--  <a href="#">Settings</a>-->
+<!--  <a href="#">Analyze</a>-->
+</div>

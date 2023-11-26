@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-right: 20px;
+
+  .user{
+    display: flex;
+    flex-direction: column;
+    .bold-txt-s{
+      color: var(--accent, #0B6E4F);
+    }
+  }
+
+  mat-icon.person{
+    color: var(--accent, #0B6E4F);
+    height: 52px;
+    width: 52px;
+    font-size: 52px;
+  }
+
+}
