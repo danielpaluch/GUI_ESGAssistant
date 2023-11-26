@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { TemplateComponent } from './template/template.component';
 import { MaterialModule } from '../material.module';
-import { MatInputModule } from '@angular/material/input';
 import { MainComponent } from './main/main.component';
 import { EmissionFactorModule } from '../emission-factor/emission-factor.module';
 import { RouterOutlet } from '@angular/router';
