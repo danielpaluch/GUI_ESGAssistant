@@ -1,1 +1,14 @@
-<app-template></app-template>
+
+@if (isLogged) {
+  <section class="wrapper">
+    <app-header></app-header>
+  
+    <app-nav></app-nav>
+  
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+} @else {
+  <router-outlet></router-outlet>
+}

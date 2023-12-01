@@ -12,17 +12,10 @@ const routes: Routes = [
     path: 'test',
     component: TestComponent,
   },
-  {
-    path: 'emission-factor',
-    loadChildren: () =>
-      import('../emission-factor/emission-factor.module').then(
-        (m) => m.EmissionFactorModule
-      ),
-  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class ShellRoutingModule {}

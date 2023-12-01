@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
-import { TemplateComponent } from './template/template.component';
 import { MaterialModule } from '../material.module';
 import { MainComponent } from './main/main.component';
-import { EmissionFactorModule } from '../emission-factor/emission-factor.module';
 import { RouterOutlet } from '@angular/router';
 import { TestComponent } from './test/test.component';
-import {NavComponent} from "./components/nav/nav.component";
-import {HeaderComponent} from "./components/header/header.component";
+import { ShellRoutingModule } from './shell-routing.module';
 
 const MATERIAL_MODULES = [MaterialModule];
 
 @NgModule({
-  declarations: [TemplateComponent, MainComponent, TestComponent],
-  exports: [TemplateComponent],
-  imports: [MATERIAL_MODULES, EmissionFactorModule, RouterOutlet, NavComponent, HeaderComponent],
+  declarations: [MainComponent, TestComponent],
+  exports: [],
+  imports: [MATERIAL_MODULES, ShellRoutingModule, RouterOutlet],
 })
 export class ShellModule {}
