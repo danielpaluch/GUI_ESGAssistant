@@ -10,6 +10,14 @@ a {
     font-size: 30px;
     color: white;
   }
+  &.active{
+    mat-icon{
+      color: var(--secondary_accent, #08A045);
+    }
+    span{
+      color: var(--secondary_accent, #08A045);
+    }
+  }
 
   span{
     align-self: center;

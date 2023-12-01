@@ -11,7 +11,6 @@ import {UserInfoComponent} from "../user-info/user-info.component";
 })
 export class HeaderComponent {
 
-  @Input() !title = 'Overview'
-
+  @Input() !title=''
 
 }

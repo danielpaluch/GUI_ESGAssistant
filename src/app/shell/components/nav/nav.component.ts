@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatIconModule} from "@angular/material/icon";
-import {NavListComponent} from "../nav-list/nav-list.component";
+import {NavigationConfig, NavListComponent} from "../nav-list/nav-list.component";
 import { NgOptimizedImage } from '@angular/common'
 import {NavItemComponent} from "../nav-item/nav-item.component";
 @Component({
@@ -12,5 +12,5 @@ import {NavItemComponent} from "../nav-item/nav-item.component";
   styleUrl: './nav.component.scss'
 })
 export class NavComponent {
-
+  @Input() navigationConfig!:NavigationConfig[]
 }

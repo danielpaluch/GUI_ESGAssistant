@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatIconModule} from "@angular/material/icon";
 import {NavItemComponent} from "../nav-item/nav-item.component";
@@ -11,38 +11,38 @@ import {NavItemComponent} from "../nav-item/nav-item.component";
   styleUrl: './nav-list.component.scss'
 })
 export class NavListComponent {
-  navigationConfig = navigationConfig
+  @Input() navigationConfig!:NavigationConfig[]
 }
 
 
 export const navigationConfig:NavigationConfig[] = [
   {
-    route:'',
+    route:'/overview',
     icon:'home',
     title:'Overview'
   },
   {
-    route:'',
+    route:'/esg',
     icon:'folder',
     title:'ESG'
   },
   {
-    route:'',
+    route:'/reports',
     icon:'list_alt',
     title:'Reports'
   },
   {
-    route:'',
+    route:'/management',
     icon:'supervisor_account',
     title:'Management'
   },
   {
-    route:'',
+    route:'/settings',
     icon:'settings',
     title:'Settings'
   },
   {
-    route:'',
+    route:'/analyze',
     icon:'assessment',
     title:'Analyze'
   },
