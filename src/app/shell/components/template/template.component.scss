@@ -1,0 +1,23 @@
+@import "../../../../styles";
+
+.wrapper{
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: 100px 1fr;
+  grid-template-columns: 260px 1fr;
+  grid-template-areas:
+    "sd hd hd hd "
+    "sd main main main"
+    "sd main main main"
+    "sd main main main "
+    "sd main main main";
+}
+.header {
+  background: var(--white, #FFF);
+  grid-area: hd;
+}
+.content {
+  grid-area: main;
+  background: #F2F2F2;
+}

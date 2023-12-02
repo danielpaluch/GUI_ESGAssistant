@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title> {{ title }}</mat-card-title>
+      <span style="display: flex; margin-left: auto">
+        <ng-content select="[title-actions]"></ng-content>
+      </span>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-content select="[content]"></ng-content>
+  </mat-card-content>
+</mat-card>

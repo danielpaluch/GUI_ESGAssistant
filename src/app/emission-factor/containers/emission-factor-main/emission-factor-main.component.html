@@ -1,11 +1,6 @@
-<mat-card>
-  <mat-card-title>
-    <h4>Emission Factor </h4>
-    <button type="button" mat-button>Add new line</button>
-  </mat-card-title>
-  <mat-card-content>
-    <mat-list *ngFor="let component of components">
-      <span></span>
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+<app-card [title]="'Emission Factor'">
+  <button type="button" mat-button title-actions (click)="addEmissionFactor()">Add new line</button>
+  <mat-list content *ngFor="let component of components">
+    <span></span>
+  </mat-list>
+</app-card>
