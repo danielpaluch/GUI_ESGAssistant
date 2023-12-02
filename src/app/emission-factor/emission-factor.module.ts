@@ -5,7 +5,7 @@ import {EmissionFactorRoutingModule} from "./emission-factor-routing.module";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
-import {CardComponent} from "../esg-lib/card/card.component";
+import {CardComponent} from "../esg-lib/components/card/card.component";
 
 const MATERIAL_MODULES = [
   MatCardModule
