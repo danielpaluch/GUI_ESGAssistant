@@ -1,34 +1,21 @@
-@defer(when stepConfig) {
+@defer(when steps) {
   <app-wizard
-    [stepConfig]="stepConfig"
+    [steps]="steps"
     (submit)="onSave()"
   ></app-wizard>
 }
 
 <ng-template #firstStep>
-  <p>First step</p>
-  <mat-form-field>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput>
-  </mat-form-field>
+  <app-form-first-step
+    [form]= "firstStepForm"
+  >
+  </app-form-first-step>
 </ng-template>
 
 <ng-template #secondStep>
-  <p>Second Step</p>
-  <mat-form-field>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput>
-  </mat-form-field>
+  <app-form-second-step
+    [form]="secondStepForm"
+  ></app-form-second-step>
 </ng-template>
 
 

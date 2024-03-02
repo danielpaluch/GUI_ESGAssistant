@@ -1,0 +1,46 @@
+<div class="form-container">
+  <span class="regular-txt-l">Type:</span>
+  <app-select-form-field
+    [formControl]="typeControl"
+    [options]="(typeOptions$ | async ) || []"
+    [displayWith]="typeLabel"
+  />
+</div>
+
+<div class="form-container">
+  <span class="regular-txt-l">Category:</span>
+  <app-select-form-field
+    [formControl]="categoryControl"
+    [options]="(categoryOptions$ | async ) || []"
+    [displayWith]="categoryLabel"
+  />
+</div>
+
+<div class="form-container">
+  <span class="regular-txt-l">Fuel:</span>
+  <app-select-form-field
+    [formControl]="fuelControl"
+    [options]="(fuelOptions$ | async ) || []"
+    [displayWith]="fuelLabel"
+  />
+</div>
+
+
+
+
+<div class="form-container">
+  <span class="regular-txt-l">Amount:</span>
+  <app-number-form-field
+    [formControl]="amountControl"
+  />
+</div>
+
+<div class="form-container">
+  <span class="regular-txt-l">Unit:</span>
+  <app-select-form-field
+    [formControl]="unitControl"
+    [options]="(unitOptions$ | async ) || []"
+    [displayWith]="unitLabel"
+  />
+</div>
+

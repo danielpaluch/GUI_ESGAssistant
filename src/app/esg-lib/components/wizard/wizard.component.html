@@ -1,46 +1,119 @@
-<div class="form-page-container">
-  <div class="form-steps-container">
-    @for ( step of steps$|async ; let i = $index; track step.stepIndex){
-      <div
-        (click)="onStepClick(step)"
-        [ngClass]="{
-        'step-complete': step.isValid,
-        'step-incomplete': !step.isValid,
-        'step-current': (currentStep$ | async)?.stepIndex === step.stepIndex
-        }"
-        class="step-bubble">
-        {{ step.stepIndex }}
+<mat-stepper #stepper [linear]="true">
+  @for (step of steps; track step.template){
+
+
+    <mat-step [stepControl]="step.formGroup">
+
+      <ng-template matStepLabel>{{ step.label }}</ng-template>
+
+      <div style="padding: 10px">
+        <ng-container
+          *ngTemplateOutlet="step.template || defaultTemplate;
+         context: { $implicit: step }
+        "
+        ></ng-container>
       </div>
-      @if (steps$ | async ; as steps){
-        @if (i < steps.length - 1){
-          <div class="step-divider"></div>
-        }
-      }
-    }
-  </div>
-
-  <div class="step-page-container">
-    <div class="form-step">
-
-      @for (step of steps$|async; track step.stepIndex){
-        @if (step === (currentStep$ | async)){
-          {{step.template}}
-          <ng-container
-            *ngTemplateOutlet="step.template || defaultTemplate;
-             context: { $implicit: step }
-"
-          ></ng-container>
-        }
-      }
-
-    </div>
-  </div>
-  <button (click)="onNextStep()" [disabled]="!(currentStep$ | async)?.isValid" class="form-continue-btn">
-    {{ showButtonLabel() }}
-  </button>
-</div>
 
 
-<ng-template #defaultTemplate>
-  Empty
-</ng-template>
+      <div style="display: flex;justify-content: end;gap: 10px">
+        <button
+          mat-raised-button
+          color="accent"
+          matStepperPrevious
+          [disabled]="stepperIndex === 0 "
+        >Back</button>
+        <button
+          mat-raised-button
+          color="accent"
+          matStepperNext
+          [disabled]=" !(step.formGroup.valid)"
+        >
+         {{nextLabel}}
+        </button>
+      </div>
+    </mat-step>
+
+  }
+
+</mat-stepper>
+
+
+
+<!--@if (getSteps() | async; as steps){-->
+<!--    @if (getCurrentStep() | async; as currentStep){-->
+
+
+<!--        <div class="form-page-container" >-->
+<!--          <div class="form-steps-container">-->
+<!--            @for ( step of steps ; let i = $index; track step.stepIndex){-->
+<!--              <div-->
+<!--                (click)="onStepClick(step)"-->
+<!--                [ngClass]="{-->
+<!--          'step-complete': currentStep.isValid |async,-->
+<!--          'step-incomplete': !(currentStep.isValid |async),-->
+<!--          'step-current': currentStep.stepIndex === step.stepIndex-->
+<!--          }"-->
+<!--                class="step-bubble">-->
+<!--                {{ step.stepIndex }}-->
+<!--              </div>-->
+<!--              <div style="padding: 0 15px">-->
+<!--                {{step.label}}-->
+<!--              </div>-->
+
+<!--              @if (i < steps.length - 1){-->
+<!--                <div class="step-divider"></div>-->
+<!--              }-->
+
+<!--            }-->
+<!--          </div>-->
+
+<!--          <div class="step-page-container">-->
+<!--            <div class="form-step">-->
+
+<!--              @for (step of steps; track step.stepIndex){-->
+<!--                @if (step === currentStep){-->
+<!--                  <ng-container-->
+<!--                    *ngTemplateOutlet="step.template || defaultTemplate;-->
+<!--               context: { $implicit: step }-->
+<!--  "-->
+<!--                  ></ng-container>-->
+<!--                }-->
+<!--              }-->
+
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div style="-->
+<!--    display: flex;-->
+<!--    justify-content: end;-->
+<!--    gap: 10px ;-->
+<!--  ">-->
+<!--            <button-->
+<!--              mat-raised-button-->
+<!--              color="accent"-->
+<!--              (click)="onBackStep(currentStep,steps)"-->
+<!--              [disabled]="currentStep.stepIndex === 1"-->
+<!--            >-->
+<!--              Back-->
+<!--            </button>-->
+<!--            <button-->
+<!--              mat-raised-button-->
+<!--              color="accent"-->
+<!--              (click)="onNextStep(currentStep,steps)"-->
+<!--              [disabled]="!(currentStep.isValid | async)"-->
+<!--            >-->
+<!--              {{ showButtonLabel(currentStep,steps) }}-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+        <ng-template #defaultTemplate>
+          Empty
+        </ng-template>
+
+
+<!--    }-->
+<!--  }-->
+
+
+
