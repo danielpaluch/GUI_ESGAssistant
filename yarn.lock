@@ -159,10 +159,10 @@
     vite "5.2.11"
     watchpack "2.4.1"
 
-"@angular/cdk@^17.0.1":
-  version "17.3.10"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-17.3.10.tgz#4a3bab529cd65bb19cb89c89b3548dcc534d1a44"
-  integrity sha512-b1qktT2c1TTTe5nTji/kFAVW92fULK0YhYAvJ+BjZTPKu2FniZNe8o4qqQ0pUuvtMu+ZQxp/QqFYoidIVCjScg==
+"@angular/cdk@^18.0.6":
+  version "18.0.6"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-18.0.6.tgz#8dc6c3c9214c6ab06a2a491b5d1cf7c455f21e44"
+  integrity sha512-9CmlQ8uZ0cHuj+1jDdabbFw90QpjrJzh1/cgeHN/8vAGE4ranxX3l6cqpVxuoWRLkB2ykTHt2xeoTM8y0d9ERA==
   dependencies:
     tslib "^2.3.0"
   optionalDependencies:
@@ -233,10 +233,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/material@^17.0.1":
-  version "17.3.10"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-17.3.10.tgz#db4c41bcc4ba6a6328be3d89dc95947a48555b54"
-  integrity sha512-hHMQES0tQPH5JW33W+mpBPuM8ybsloDTqFPuRV8cboDjosAWfJhzAKF3ozICpNlUrs62La/2Wu/756GcQrxebg==
+"@angular/material@^18.0.6":
+  version "18.0.6"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-18.0.6.tgz#aeb8f0d38d33fe729a970b1b7df4c0af867d921e"
+  integrity sha512-6Gp+oW7zjkb5A6HnHMYlxCt4wB8JqjIoAQu1MgQ6OKOOaDlvhMg2+a1ww5mov/OuoFE+FluLQkMCmVkjG1t/Aw==
   dependencies:
     "@material/animation" "15.0.0-canary.7f224ddd4.0"
     "@material/auto-init" "15.0.0-canary.7f224ddd4.0"
@@ -281,6 +281,7 @@
     "@material/tab-scroller" "15.0.0-canary.7f224ddd4.0"
     "@material/textfield" "15.0.0-canary.7f224ddd4.0"
     "@material/theme" "15.0.0-canary.7f224ddd4.0"
+    "@material/tokens" "15.0.0-canary.7f224ddd4.0"
     "@material/tooltip" "15.0.0-canary.7f224ddd4.0"
     "@material/top-app-bar" "15.0.0-canary.7f224ddd4.0"
     "@material/touch-target" "15.0.0-canary.7f224ddd4.0"
@@ -7935,6 +7936,7 @@ wildcard@^2.0.0:
   integrity sha512-CC1bOL87PIWSBhDcTrdeLo6eGT7mCFtrg0uIJtqJUFyK+eJnzl8A1niH56uu7KMa5XFrtiV+AQuHO3n7DsHnLQ==
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
