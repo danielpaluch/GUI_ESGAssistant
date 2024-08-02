@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import { EmissionSecondStepGroup} from "../add-emission-factor/add-emission-factor.component";
+import {EmissionSecondStepGroup, EmissionThirdStepGroup} from "../add-emission-factor/add-emission-factor.component";
 import {FormControl} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {TextFormFieldComponent} from "../../../esg-lib/components/text-form-field/text-form-field.component";
@@ -7,6 +7,10 @@ import {SelectFormFieldComponent} from "../../../esg-lib/components/select-form-
 import {BehaviorSubject, Observable, Subject, takeUntil} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {NumberFormFieldComponent} from "../../../esg-lib/components/number-form-field/number-form-field.component";
+import {EmissionFormTableComponent} from "../emission-form-table/emission-form-table.component";
+import {MatButton} from "@angular/material/button";
+import {MatStepperNext} from "@angular/material/stepper";
+import {EmissionFormModel} from "../../models/emission-form.model";
 
 @Component({
   selector: 'app-form-second-step',
@@ -16,7 +20,10 @@ import {NumberFormFieldComponent} from "../../../esg-lib/components/number-form-
     SelectFormFieldComponent,
     MatFormFieldModule,
     AsyncPipe,
-    NumberFormFieldComponent
+    NumberFormFieldComponent,
+    EmissionFormTableComponent,
+    MatButton,
+    MatStepperNext
   ],
   templateUrl: './form-second-step.component.html',
   styleUrl: './form-second-step.component.scss'
@@ -37,13 +44,14 @@ export class FormSecondStepComponent implements OnInit,OnDestroy{
   public unitOptions$: Observable<UnitConfig[]> = this._unitOptions.asObservable();
 
 
-  @Input() form!:EmissionSecondStepGroup;
+  @Input({required: true}) secondStepForm: EmissionSecondStepGroup;
+
+  @Input({required: true}) thirdStepForm: EmissionThirdStepGroup;
 
 
   ngOnInit() {
-    this.form.type.valueChanges.subscribe(
+    this.secondStepForm.controls.type.valueChanges.subscribe(
       (newType)=>{
-        console.log(newType)
         this._categoryOptions.next(newType ? newType.categories : []);
         this._fuelOptions.next([]);
         this._unitOptions.next(newType ? newType.units: [])
@@ -55,31 +63,31 @@ export class FormSecondStepComponent implements OnInit,OnDestroy{
       }
     )
 
-    this.categoryControl.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value:CategoryConfig|undefined) => {
+    this.categoryControl.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value:CategoryConfig|null) => {
 
       this._fuelOptions.next(value ? value.fuels : []);
       this.fuelControl.reset();
     });
   }
 
-  get typeControl():FormControl<TypeConfig|undefined>{
-    return this.form.type
+  get typeControl():FormControl<TypeConfig|null>{
+    return this.secondStepForm.controls.type
   }
 
-  get categoryControl():FormControl<CategoryConfig|undefined>{
-    return this.form.category
+  get categoryControl():FormControl<CategoryConfig|null>{
+    return this.secondStepForm.controls.category
   }
 
-  get fuelControl():FormControl<FuelConfig|undefined>{
-    return this.form.fuel
+  get fuelControl():FormControl<FuelConfig|null>{
+    return this.secondStepForm.controls.fuel
   }
 
-  get amountControl():FormControl<number>{
-    return this.form.amount
+  get amountControl():FormControl<number|null>{
+    return this.secondStepForm.controls.amount
   }
 
-  get unitControl():FormControl<UnitConfig|undefined>{
-    return this.form.unit
+  get unitControl():FormControl<UnitConfig|null>{
+    return this.secondStepForm.controls.unit
   }
 
   typeLabel(type:TypeConfig):string{
@@ -97,6 +105,16 @@ export class FormSecondStepComponent implements OnInit,OnDestroy{
   unitLabel(type:UnitConfig):string{
     return type.label
   }
+
+  addEmission(emission: Partial<EmissionFormModel>){
+    this.thirdStepForm.addNewEmission(emission)
+    this.secondStepForm.reset()
+  }
+
+  deleteEmission(index: number){
+    this.thirdStepForm.removeEmissionByIndex(index)
+  }
+
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

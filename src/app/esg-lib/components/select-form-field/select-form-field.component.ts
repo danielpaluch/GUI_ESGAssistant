@@ -20,9 +20,9 @@ import {JsonPipe} from "@angular/common";
 })
 export class SelectFormFieldComponent<T> {
 
-  @Input({required:true}) formControl!: FormControl<T | undefined>
+  @Input({required:true}) formControl: FormControl<T | undefined | null>
 
-  @Input() label!: string;
+  @Input() label: string;
 
   @Input() options!: T[]
 

@@ -16,7 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 })
 export class NumberFormFieldComponent {
 
-  @Input({required:true}) formControl!: FormControl<number>
+  @Input({required:true}) formControl: FormControl<number|null>
 
   @Input() label!: string;
 

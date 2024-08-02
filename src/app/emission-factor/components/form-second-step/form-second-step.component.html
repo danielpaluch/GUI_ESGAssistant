@@ -26,8 +26,6 @@
 </div>
 
 
-
-
 <div class="form-container">
   <span class="regular-txt-l">Amount:</span>
   <app-number-form-field
@@ -44,3 +42,16 @@
   />
 </div>
 
+<button
+  mat-raised-button
+  color="accent"
+  (click)="addEmission(secondStepForm.value)"
+>
+  Add emission
+</button>
+
+<app-emission-form-table
+  [formValue]="thirdStepForm.value"
+  [showDeleteColumn]="true"
+  (deleteRow)="deleteEmission($event)"
+/>

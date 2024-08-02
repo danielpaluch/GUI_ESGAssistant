@@ -16,14 +16,14 @@ import {TextFormFieldComponent} from "../../../esg-lib/components/text-form-fiel
 })
 export class FormFirstStepComponent {
 
-  @Input() form!:EmissionFirstStepGroup;
+  @Input() form: EmissionFirstStepGroup;
 
-  get aliasControl():FormControl<string>{
-    return this.form.alias
+  get aliasControl():FormControl<string | null>{
+    return this.form.controls.alias
   }
 
-  get descriptionControl():FormControl<string>{
-    return this.form.description
+  get descriptionControl():FormControl<string| null>{
+    return this.form.controls.description
   }
 
 }

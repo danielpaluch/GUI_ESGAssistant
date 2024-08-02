@@ -16,8 +16,8 @@ import {MatInputModule} from "@angular/material/input";
 })
 export class TextFormFieldComponent {
 
-  @Input({required:true}) formControl!: FormControl<string>
+  @Input({required:true}) formControl: FormControl<string | null>
 
-  @Input() label!: string;
+  @Input() label: string;
 
 }

@@ -1,12 +1,12 @@
 import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {StepperModel} from "../../models/wizard.model";
+import {EmissionStepper, StepperModel} from "../../../esg-lib/models/wizard.model";
 import {AsyncPipe, JsonPipe, NgClass, NgTemplateOutlet} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatStepper, MatStepperModule} from "@angular/material/stepper";
 
 @Component({
-  selector: 'app-wizard',
-  templateUrl: './wizard.component.html',
+  selector: 'app-emission-wizard',
+  templateUrl: './emission-wizard.component.html',
   standalone: true,
   imports: [
     AsyncPipe,
@@ -16,31 +16,21 @@ import {MatStepper, MatStepperModule} from "@angular/material/stepper";
     JsonPipe,
     MatStepperModule
   ],
-  styleUrls: ['./wizard.component.scss']
+  styleUrls: ['./emission-wizard.component.scss']
 })
-export class WizardComponent implements AfterViewInit{
+export class EmissionWizardComponent implements AfterViewInit{
 
-
-  @Input() steps!:StepperModel[];
+  @Input() steps:EmissionStepper;
 
   @Output() readonly submit = new EventEmitter<void>();
 
-  @ViewChild('stepper') stepper!: MatStepper;
-
-
-  constructor() { }
-
-
-  onSubmit(): void {
-      this.submit.emit()
-  }
+  @ViewChild('stepper') stepper: MatStepper;
 
   ngAfterViewInit() {
     setTimeout(()=>{
       this.stepper.selectedIndex
     })
   }
-
 
   get stepperIndex(): number{
     if(this.stepper){
@@ -49,9 +39,15 @@ export class WizardComponent implements AfterViewInit{
     return 0;
   }
 
-  get nextLabel(): string{
-    return this.stepperIndex+1 === this.steps.length ? 'Save' : 'Next'
+  get getStepKeys(): Array<keyof EmissionStepper> {
+    return Object.keys(this.steps) as Array<keyof EmissionStepper>;
   }
 
+  get last(): boolean {
+    return this.stepperIndex + 1 ===  this.getStepKeys.length;
+  }
 
+  submitForm(){
+    this.submit.emit()
+  }
 }
