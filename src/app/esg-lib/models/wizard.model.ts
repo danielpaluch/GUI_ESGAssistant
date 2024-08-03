@@ -1,16 +1,13 @@
 import {TemplateRef} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
-import {Observable} from "rxjs";
-import {
-  EmissionFirstStepGroup, EmissionSecondStepGroup, EmissionThirdStepGroup
-} from "../../emission-factor/components/add-emission-factor/add-emission-factor.component";
+import { FormGroup} from "@angular/forms";
+import {EmissionFirstStepGroup} from "../../emission-factor/forms/emission-first-step.form";
+import {EmissionThirdStepGroup} from "../../emission-factor/forms/emission-third-step.form";
 
 export interface StepperModel<T extends FormGroup>{
   label: string;
   template: TemplateRef<any>
   formGroup: T
 }
-
 
 export interface EmissionStepper {
   description: IStepper<EmissionFirstStepGroup>

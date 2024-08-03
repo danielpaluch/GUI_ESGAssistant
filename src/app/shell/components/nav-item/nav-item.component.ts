@@ -12,9 +12,9 @@ import {RouterModule} from "@angular/router";
 })
 export class NavItemComponent {
 
-  @Input() title: string = '';
+  @Input() title: string;
 
-  @Input() icon: string = '';
+  @Input() icon: string;
 
-  @Input() route: string = '';
+  @Input() route: string;
 }

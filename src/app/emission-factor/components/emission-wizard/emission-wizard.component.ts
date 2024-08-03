@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {EmissionStepper, StepperModel} from "../../../esg-lib/models/wizard.model";
+import {EmissionStepper} from "../../../esg-lib/models/wizard.model";
 import {AsyncPipe, JsonPipe, NgClass, NgTemplateOutlet} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatStepper, MatStepperModule} from "@angular/material/stepper";
@@ -32,22 +32,22 @@ export class EmissionWizardComponent implements AfterViewInit{
     })
   }
 
-  get stepperIndex(): number{
+  public get stepperIndex(): number{
     if(this.stepper){
       return this.stepper.selectedIndex;
     }
     return 0;
   }
 
-  get getStepKeys(): Array<keyof EmissionStepper> {
+  public get getStepKeys(): Array<keyof EmissionStepper> {
     return Object.keys(this.steps) as Array<keyof EmissionStepper>;
   }
 
-  get last(): boolean {
+  public get last(): boolean {
     return this.stepperIndex + 1 ===  this.getStepKeys.length;
   }
 
-  submitForm(){
+  public submitForm(){
     this.submit.emit()
   }
 }

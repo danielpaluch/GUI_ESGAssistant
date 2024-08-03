@@ -1,12 +1,13 @@
-<span class="regular-txt-l">Alias:</span>
-<app-text-form-field
-  [label]="'Add alias'"
-  [formControl]="aliasControl"
->
-</app-text-form-field>
-<span class="regular-txt-l">Description:</span>
-<app-text-form-field
-  [label]="'Add description'"
-  [formControl]="descriptionControl"
->
-</app-text-form-field>
+<app-label-field [label]="'Alias:'">
+  <app-text-form-field
+    [label]="'Add alias'"
+    [formControl]="aliasControl"
+  />
+</app-label-field>
+
+<app-label-field [label]="'Description:'">
+  <app-text-form-field
+    [label]="'Add description'"
+    [formControl]="descriptionControl"
+  />
+</app-label-field>

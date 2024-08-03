@@ -1,5 +1,4 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {EmissionSecondStepGroup, EmissionThirdStepGroup} from "../add-emission-factor/add-emission-factor.component";
 import {FormControl} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {TextFormFieldComponent} from "../../../esg-lib/components/text-form-field/text-form-field.component";
@@ -11,6 +10,9 @@ import {EmissionFormTableComponent} from "../emission-form-table/emission-form-t
 import {MatButton} from "@angular/material/button";
 import {MatStepperNext} from "@angular/material/stepper";
 import {EmissionFormModel} from "../../models/emission-form.model";
+import {EmissionSecondStepGroup} from "../../forms/emission-second-step.form";
+import {EmissionThirdStepGroup} from "../../forms/emission-third-step.form";
+import {LabelFieldComponent} from "../../../esg-lib/components/label-field/label-field.component";
 
 @Component({
   selector: 'app-form-second-step',
@@ -23,7 +25,8 @@ import {EmissionFormModel} from "../../models/emission-form.model";
     NumberFormFieldComponent,
     EmissionFormTableComponent,
     MatButton,
-    MatStepperNext
+    MatStepperNext,
+    LabelFieldComponent
   ],
   templateUrl: './form-second-step.component.html',
   styleUrl: './form-second-step.component.scss'
@@ -70,48 +73,36 @@ export class FormSecondStepComponent implements OnInit,OnDestroy{
     });
   }
 
-  get typeControl():FormControl<TypeConfig|null>{
+  public get typeControl():FormControl<TypeConfig|null>{
     return this.secondStepForm.controls.type
   }
 
-  get categoryControl():FormControl<CategoryConfig|null>{
+  public get categoryControl():FormControl<CategoryConfig|null>{
     return this.secondStepForm.controls.category
   }
 
-  get fuelControl():FormControl<FuelConfig|null>{
+  public get fuelControl():FormControl<FuelConfig|null>{
     return this.secondStepForm.controls.fuel
   }
 
-  get amountControl():FormControl<number|null>{
+  public get amountControl():FormControl<number|null>{
     return this.secondStepForm.controls.amount
   }
 
-  get unitControl():FormControl<UnitConfig|null>{
+  public get unitControl():FormControl<UnitConfig|null>{
     return this.secondStepForm.controls.unit
   }
 
-  typeLabel(type:TypeConfig):string{
+  public label(type: TypeConfig | FuelConfig | CategoryConfig | UnitConfig ):string {
     return type.label
   }
 
-  fuelLabel(type:FuelConfig):string{
-    return type.label
-  }
-
-  categoryLabel(type:CategoryConfig):string{
-    return type.label
-  }
-
-  unitLabel(type:UnitConfig):string{
-    return type.label
-  }
-
-  addEmission(emission: Partial<EmissionFormModel>){
+  public addEmission(emission: Partial<EmissionFormModel>){
     this.thirdStepForm.addNewEmission(emission)
     this.secondStepForm.reset()
   }
 
-  deleteEmission(index: number){
+  public deleteEmission(index: number){
     this.thirdStepForm.removeEmissionByIndex(index)
   }
 

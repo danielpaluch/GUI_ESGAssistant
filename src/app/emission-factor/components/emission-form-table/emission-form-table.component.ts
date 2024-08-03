@@ -1,15 +1,18 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {EmissionThirdStepGroup} from "../add-emission-factor/add-emission-factor.component";
-import {MatCell, MatColumnDef, MatHeaderCell, MatTable, MatTableModule} from "@angular/material/table";
-import {MatButton} from "@angular/material/button";
+import { MatTableModule} from "@angular/material/table";
+import {MatButton, MatIconButton, MatMiniFabButton} from "@angular/material/button";
 import {EmissionList} from "../../models/emission-form.model";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-emission-form-table',
   standalone: true,
   imports: [
     MatTableModule,
-    MatButton
+    MatButton,
+    MatIcon,
+    MatMiniFabButton,
+    MatIconButton
   ],
   templateUrl: './emission-form-table.component.html',
   styleUrl: './emission-form-table.component.scss'
@@ -20,7 +23,7 @@ export class EmissionFormTableComponent implements OnInit{
 
   @Input() showDeleteColumn: boolean = false;
 
-  @Output() readonly deleteRow = new EventEmitter<number>();
+  @Output() readonly deleteRow: EventEmitter<number> = new EventEmitter<number>();
 
 
   displayedColumns: string[] = ['type', 'category', 'fuel', 'amount', 'unit'];
@@ -29,15 +32,11 @@ export class EmissionFormTableComponent implements OnInit{
     if (this.showDeleteColumn) this.displayedColumns.push('delete')
   }
 
-  get a(): Partial<EmissionList> {
-    return this.formValue
-  }
-
-  get dataSource(){
+  public get dataSource(){
     return this.formValue.emissions || [];
   }
 
-  get groupedEmissionsByKeys() {
+  public get groupedEmissionsByKeys() {
     return Object.keys(this.groupedEmissions);
   }
 
@@ -45,7 +44,7 @@ export class EmissionFormTableComponent implements OnInit{
     this.deleteRow.emit(index)
   }
 
-  get groupedEmissions() {
+  public get groupedEmissions() {
     const emissions = this.formValue.emissions || [];
     return emissions.reduce((groups: {[key: string]: any[]}, emission: any) => {
       const type = emission.type.label || 'Unknown';

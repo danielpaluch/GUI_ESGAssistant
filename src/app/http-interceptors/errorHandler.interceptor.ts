@@ -5,7 +5,6 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
-  constructor() {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -16,15 +15,9 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         let errorNumber = -1;
         let customErrorMessage = 'Unknown error';
 
-        // Delete before publication
-        console.log(error.error);
-
         if (error.error instanceof ErrorEvent) {
-          // A client-side or network error occurred. Handle it accordingly.
           customErrorMessage = 'An error occurred:' + error.error.message;
         } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
           errorNumber = error.error.errorNumber || errorNumber;
           customErrorMessage = error.error.message;
         }

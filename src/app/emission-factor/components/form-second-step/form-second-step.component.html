@@ -1,55 +1,51 @@
-<div class="form-container">
-  <span class="regular-txt-l">Type:</span>
+<app-label-field [label]="'Type:'">
   <app-select-form-field
     [formControl]="typeControl"
     [options]="(typeOptions$ | async ) || []"
-    [displayWith]="typeLabel"
+    [displayWith]="label"
   />
-</div>
+</app-label-field>
 
-<div class="form-container">
-  <span class="regular-txt-l">Category:</span>
+<app-label-field [label]="'Category:'">
   <app-select-form-field
     [formControl]="categoryControl"
     [options]="(categoryOptions$ | async ) || []"
-    [displayWith]="categoryLabel"
+    [displayWith]="label"
   />
-</div>
+</app-label-field>
 
-<div class="form-container">
-  <span class="regular-txt-l">Fuel:</span>
+<app-label-field [label]="'Fuel:'">
   <app-select-form-field
     [formControl]="fuelControl"
     [options]="(fuelOptions$ | async ) || []"
-    [displayWith]="fuelLabel"
+    [displayWith]="label"
   />
-</div>
+</app-label-field>
 
-
-<div class="form-container">
-  <span class="regular-txt-l">Amount:</span>
+<app-label-field [label]="'Amount:'">
   <app-number-form-field
     [formControl]="amountControl"
   />
-</div>
+</app-label-field>
 
-<div class="form-container">
-  <span class="regular-txt-l">Unit:</span>
+
+<app-label-field [label]="'Unit:'">
   <app-select-form-field
     [formControl]="unitControl"
     [options]="(unitOptions$ | async ) || []"
-    [displayWith]="unitLabel"
+    [displayWith]="label"
   />
-</div>
+</app-label-field>
 
 <button
   mat-raised-button
   color="accent"
+  style="align-self: center"
+  [disabled]="secondStepForm.invalid"
   (click)="addEmission(secondStepForm.value)"
 >
   Add emission
 </button>
-
 <app-emission-form-table
   [formValue]="thirdStepForm.value"
   [showDeleteColumn]="true"

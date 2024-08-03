@@ -1,7 +1,9 @@
-import {Component, signal} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {AddEmissionFactorComponent} from "../../components/add-emission-factor/add-emission-factor.component";
 import {EmissionFactor} from "../../models/emission-form.model";
+import {
+  DialogAddEmissionFactorComponent
+} from "../../components/dialog-add-emission-factor/dialog-add-emission-factor.component";
 
 @Component({
   selector: 'app-emission-factor-main',
@@ -11,12 +13,10 @@ import {EmissionFactor} from "../../models/emission-form.model";
 export class EmissionFactorMainComponent {
   components: EmissionFactor[] = []
 
-  constructor(private dialog: MatDialog) {
-
-  }
+  constructor(private dialog: MatDialog) {}
 
   public addEmissionFactor():void{
-    const dialogRef = this.dialog.open(AddEmissionFactorComponent)
+    const dialogRef = this.dialog.open(DialogAddEmissionFactorComponent)
 
     dialogRef.afterClosed().subscribe((data: EmissionFactor)=>{
       this.components.push(data)

@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {EmissionFormTableComponent} from "../emission-form-table/emission-form-table.component";
-import {EmissionThirdStepGroup} from "../add-emission-factor/add-emission-factor.component";
+import {EmissionThirdStepGroup} from "../../forms/emission-third-step.form";
 
 @Component({
   selector: 'app-form-third-step',
