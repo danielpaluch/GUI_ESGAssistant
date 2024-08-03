@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WizardComponent } from './wizard.component';
+import { EmissionWizardComponent } from './emission-wizard.component';
 
 describe('WizardComponent', () => {
-  let component: WizardComponent;
-  let fixture: ComponentFixture<WizardComponent>;
+  let component: EmissionWizardComponent;
+  let fixture: ComponentFixture<EmissionWizardComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WizardComponent]
+      declarations: [EmissionWizardComponent]
     });
-    fixture = TestBed.createComponent(WizardComponent);
+    fixture = TestBed.createComponent(EmissionWizardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

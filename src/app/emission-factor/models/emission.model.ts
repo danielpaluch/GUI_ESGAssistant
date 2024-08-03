@@ -1,4 +1,4 @@
-export interface Emission {
+export interface EmissionModel {
   emissionType: EmissionType ;
   emissionAttributes: EmissionAttributes;
 }
@@ -131,4 +131,40 @@ export interface ExternalTransportEmployeesAttributes {
 export interface RefrigerantsAttributes {
   refrigerantType: string;
   volume: number;
+}
+
+
+export interface FuelConfig extends Entity{
+}
+
+export interface CategoryConfig extends Entity{
+  fuels: FuelConfig[];
+}
+
+export interface TypeConfig extends Entity{
+  categories: CategoryConfig[];
+  amount: AmountConfig;
+  units: UnitConfig[];
+}
+
+export interface AmountConfig extends Entity { }
+
+export interface UnitConfig extends Entity { }
+
+export interface Entity{
+  label: string;
+  value: string;
+}
+
+export type FieldType = SelectField | 'text' | 'number'
+
+export interface SelectField {
+  type: FormFieldSelectJSON.SELECT
+  options: Entity[]
+}
+
+export enum FormFieldSelectJSON{
+  SELECT = 'select',
+  TEXT = 'text',
+  NUMBER = 'number'
 }

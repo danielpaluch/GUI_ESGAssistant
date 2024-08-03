@@ -1,0 +1,53 @@
+<mat-stepper #stepper [linear]="true">
+  @for (key  of getStepKeys; track key ){
+
+    <mat-step [stepControl]="steps[key].formGroup">
+      <ng-template matStepLabel>{{  steps[key].label }}</ng-template>
+
+      <div class="template-container">
+        <ng-container
+          *ngTemplateOutlet="steps[key].template || defaultTemplate; context: { $implicit: steps[key] }">
+        ></ng-container>
+      </div>
+
+      <div class="button-section">
+        <button
+          mat-raised-button
+          color="accent"
+          matStepperPrevious
+          [disabled]="stepperIndex === 0 "
+        >
+          Back
+        </button>
+
+        @if(last){
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="submitForm()"
+            [disabled]="!(steps[key].formGroup.valid)"
+          >
+            Save
+          </button>
+        } @else {
+          <button
+            mat-raised-button
+            color="accent"
+            matStepperNext
+            [disabled]="!(steps[key].formGroup.valid)"
+          >
+            Next
+          </button>
+        }
+      </div>
+    </mat-step>
+  }
+
+</mat-stepper>
+
+<ng-template #defaultTemplate>
+  Empty
+</ng-template>
+
+
+

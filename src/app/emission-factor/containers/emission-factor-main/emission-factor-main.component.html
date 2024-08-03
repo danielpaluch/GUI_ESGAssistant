@@ -1,6 +1,23 @@
 <app-card [title]="'Emission Factor'">
   <button type="button" mat-button title-actions (click)="addEmissionFactor()">Add new line</button>
-  <mat-list content *ngFor="let component of components">
-    <span></span>
+
+  <mat-list content>
+    @for (emissionFactor of components; track emissionFactor) {
+
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{emissionFactor.alias }} </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>
+            {{emissionFactor.description}}
+          </p>
+
+          <app-emission-form-table
+            [formValue]="emissionFactor.emissions"
+          />
+        </mat-expansion-panel>
+      </mat-accordion>
+    }
   </mat-list>
 </app-card>
