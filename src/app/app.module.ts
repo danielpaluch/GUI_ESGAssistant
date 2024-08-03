@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShellModule } from './shell/shell.module';
-import { EmissionFactorModule } from './emission-factor/emission-factor.module';
 import { HttpInterceptorProviders } from './http-interceptors';
 
 @NgModule({ declarations: [AppComponent],

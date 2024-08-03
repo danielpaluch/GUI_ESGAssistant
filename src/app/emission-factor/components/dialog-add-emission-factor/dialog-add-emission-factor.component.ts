@@ -27,7 +27,7 @@ import {EmissionThirdStepGroup} from "../../forms/emission-third-step.form";
     FormThirdStepComponent
   ],
   templateUrl: './dialog-add-emission-factor.component.html',
-  styleUrl: './dialog-add-emission-factor.component.scss'
+  styleUrl: './dialog-add-emission-factor.component.scss',
 })
 export class DialogAddEmissionFactorComponent implements AfterViewInit{
   @ViewChild('firstStep')

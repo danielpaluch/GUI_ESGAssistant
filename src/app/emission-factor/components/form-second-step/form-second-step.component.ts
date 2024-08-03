@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {TextFormFieldComponent} from "../../../esg-lib/components/text-form-field/text-form-field.component";
@@ -13,6 +13,8 @@ import {EmissionFormModel} from "../../models/emission-form.model";
 import {EmissionSecondStepGroup} from "../../forms/emission-second-step.form";
 import {EmissionThirdStepGroup} from "../../forms/emission-third-step.form";
 import {LabelFieldComponent} from "../../../esg-lib/components/label-field/label-field.component";
+import {formConfig} from "../../const/esg-form-config.const";
+import {CategoryConfig, FuelConfig, TypeConfig, UnitConfig} from "../../models/emission.model";
 
 @Component({
   selector: 'app-form-second-step',
@@ -28,10 +30,12 @@ import {LabelFieldComponent} from "../../../esg-lib/components/label-field/label
     MatStepperNext,
     LabelFieldComponent
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form-second-step.component.html',
-  styleUrl: './form-second-step.component.scss'
+  styleUrl: './form-second-step.component.scss',
 })
 export class FormSecondStepComponent implements OnInit,OnDestroy{
+
 
   private readonly destroy$ = new Subject<void>();
 
@@ -110,125 +114,4 @@ export class FormSecondStepComponent implements OnInit,OnDestroy{
     this.destroy$.next();
     this.destroy$.complete();
   }
-}
-
-export interface FuelConfig extends Entity{
-}
-
-export interface CategoryConfig extends Entity{
-  fuels: FuelConfig[];
-}
-
-export interface TypeConfig extends Entity{
-  categories: CategoryConfig[];
-  amount: AmountConfig;
-  units: UnitConfig[];
-}
-
-export interface AmountConfig extends Entity { }
-
-export interface UnitConfig extends Entity { }
-
-export interface Entity{
-  label: string;
-  value: string;
-}
-
-export type FieldType = SelectField | 'text' | 'number'
-
-export interface SelectField {
-  type: FormFieldSelectJSON.SELECT
-  options: Entity[]
-}
-
-export enum FormFieldSelectJSON{
-  SELECT = 'select',
-  TEXT = 'text',
-  NUMBER = 'number'
-}
-
-export const formConfig: { types: TypeConfig[] } = {
-  'types':[
-    {
-      'label':'Fuels',
-      'value':'fuels',
-      'categories':[
-        {
-          'label': 'Gas fuel',
-          'value': 'gas_fuel',
-          'fuels': [
-            { 'label': 'CNG', 'value': 'cng' },
-            { 'label': 'LNG', 'value': 'lng' },
-            { 'label': 'LPG', 'value': 'lpg' },
-            { 'label': 'Natural gas', 'value': 'natural_gas' },
-            { 'label': 'Petrochemical gases', 'value': 'petrochemical_gases' },
-          ]
-        },
-        {
-          'label': 'Liquid fuel',
-          'value': 'liquid_fuel',
-          'fuels': [
-            { 'label': 'Jet fuel (piston engines)', 'value': 'jet_fuel_piston_engines' },
-            { 'label': 'Jet fuel', 'value': 'jet_fuel' },
-            { 'label': 'Diesel (mix biofuel)', 'value': 'diesel_mix_biofuel' },
-            { 'label': 'Diesel', 'value': 'diesel' },
-            { 'label': 'Heating oil', 'value': 'heating_oil' },
-            { 'label': 'Kerosene', 'value': 'kerosene' },
-            { 'label': 'Gasoline (mix biofuel)', 'value': 'gasoline_mix_biofuel' },
-            { 'label': 'Gasoline', 'value': 'gasoline' },
-            { 'label': 'Waste fuel', 'value': 'waste_fuel' },
-            { 'label': 'Marine diesel', 'value': 'marine_diesel' },
-            { 'label': 'Marine fuel oil', 'value': 'marine_fuel_oil' },
-          ]
-        },
-        {
-          'label': 'Constant fuel',
-          'value': 'constant_fuel',
-          'fuels': [
-            { 'label': 'Coal (industrial boilers)', 'value': 'coal_industrial_boilers' },
-            { 'label': 'Coal (electric generation)', 'value': 'coal_electric_generation' },
-            { 'label': 'Coal', 'value': 'coal' },
-            { 'label': 'Coking coal', 'value': 'coking_coal' },
-            { 'label': 'Petroleum coke', 'value': 'petroleum_coke' },
-          ]
-        },
-        {
-          'label': 'Biofuel',
-          'value': 'biofuel',
-          'fuels': [
-            { 'label': 'Bioethanol', 'value': 'bioethanol' },
-            { 'label': 'Biodiesel', 'value': 'biodiesel' },
-          ]
-        },
-        {
-          'label': 'Biogas',
-          'value': 'biogas',
-          'fuels': [
-            { 'label': 'Biogas', 'value': 'biogas' },
-            { 'label': 'Landfill gas', 'value': 'landfill_gas' },
-          ]
-        },
-      ],
-      'amount':{
-        'label': 'Amount',
-        'value': 'amount'
-      },
-      'units':[
-        {
-          'label': 'Liter',
-          'value': 'liter'
-        },
-        {
-          'label': 'Ton',
-          'value': 'ton'
-        },
-        {
-          'label': 'm3',
-          'value': 'm3'
-        }
-      ]
-
-    }
-  ]
-
 }

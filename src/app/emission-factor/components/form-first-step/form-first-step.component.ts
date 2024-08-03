@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {TextFormFieldComponent} from "../../../esg-lib/components/text-form-field/text-form-field.component";
@@ -18,7 +18,8 @@ import {SelectFormFieldComponent} from "../../../esg-lib/components/select-form-
     SelectFormFieldComponent
   ],
   templateUrl: './form-first-step.component.html',
-  styleUrl: './form-first-step.component.scss'
+  styleUrl: './form-first-step.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFirstStepComponent {
 

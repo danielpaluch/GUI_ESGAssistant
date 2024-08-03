@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -16,7 +16,8 @@ import {JsonPipe} from "@angular/common";
     JsonPipe
   ],
   templateUrl: './select-form-field.component.html',
-  styleUrl: './select-form-field.component.scss'
+  styleUrl: './select-form-field.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectFormFieldComponent<T> {
 
@@ -26,9 +27,9 @@ export class SelectFormFieldComponent<T> {
 
   @Input() options!: T[]
 
-
-  @Input()
-  displayWith: (option: T) => string = (option: T) => {
+  @Input() displayWith: (option: T) => string | null = (
+    option: T,
+  ): string | null => {
     if (typeof option === 'string') {
       return option;
     }
@@ -37,8 +38,8 @@ export class SelectFormFieldComponent<T> {
       return JSON.stringify(option);
     }
 
-    if (option && typeof (option as any).toString === 'function') {
-      return (option as any).toString();
+    if (option && typeof option.toString === 'function') {
+      return option.toString();
     }
 
     return null;

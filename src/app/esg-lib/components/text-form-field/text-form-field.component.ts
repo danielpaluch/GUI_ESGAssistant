@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -12,7 +12,8 @@ import {MatInputModule} from "@angular/material/input";
     ReactiveFormsModule
   ],
   templateUrl: './text-form-field.component.html',
-  styleUrl: './text-form-field.component.scss'
+  styleUrl: './text-form-field.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextFormFieldComponent {
 

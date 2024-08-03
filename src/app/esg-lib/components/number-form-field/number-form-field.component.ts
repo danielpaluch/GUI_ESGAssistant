@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -11,6 +11,7 @@ import {MatInputModule} from "@angular/material/input";
     MatInputModule,
     ReactiveFormsModule
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './number-form-field.component.html',
   styleUrl: './number-form-field.component.scss'
 })

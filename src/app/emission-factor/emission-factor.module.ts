@@ -6,7 +6,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
 import {CardComponent} from "../esg-lib/components/card/card.component";
-import {MatAccordion, MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion";
+import {MatAccordion, MatExpansionModule} from "@angular/material/expansion";
 import {EmissionFormTableComponent} from "./components/emission-form-table/emission-form-table.component";
 
 const MATERIAL_MODULES = [

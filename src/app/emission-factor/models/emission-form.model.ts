@@ -1,9 +1,5 @@
-import {
-  CategoryConfig,
-  FuelConfig,
-  TypeConfig,
-  UnitConfig
-} from "../components/form-second-step/form-second-step.component";
+import {CategoryConfig, FuelConfig, TypeConfig, UnitConfig} from "./emission.model";
+
 
 export interface EmissionList {
   emissions: Partial<EmissionFormModel>[];

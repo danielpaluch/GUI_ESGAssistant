@@ -1,11 +1,7 @@
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {
-  CategoryConfig,
-  FuelConfig,
-  TypeConfig,
-  UnitConfig
-} from "../components/form-second-step/form-second-step.component";
+
 import {NonNegativeNumberValidator} from "../../esg-lib/validators/validators";
+import {CategoryConfig, FuelConfig, TypeConfig, UnitConfig} from "../models/emission.model";
 
 export interface EmissionSecondStepControls {
   type: FormControl<TypeConfig|null>;
