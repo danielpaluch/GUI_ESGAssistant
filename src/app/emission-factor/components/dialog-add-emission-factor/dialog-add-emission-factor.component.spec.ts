@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddEmissionFactorComponent } from './add-emission-factor.component';
+import { DialogAddEmissionFactorComponent } from './dialog-add-emission-factor.component';
 
 describe('AddEmissionFactorComponent', () => {
-  let component: AddEmissionFactorComponent;
-  let fixture: ComponentFixture<AddEmissionFactorComponent>;
+  let component: DialogAddEmissionFactorComponent;
+  let fixture: ComponentFixture<DialogAddEmissionFactorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddEmissionFactorComponent]
+      imports: [DialogAddEmissionFactorComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(AddEmissionFactorComponent);
+
+    fixture = TestBed.createComponent(DialogAddEmissionFactorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

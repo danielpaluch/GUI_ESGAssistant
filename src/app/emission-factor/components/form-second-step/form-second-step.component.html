@@ -1,0 +1,53 @@
+<app-label-field [label]="'Type:'">
+  <app-select-form-field
+    [formControl]="typeControl"
+    [options]="(typeOptions$ | async ) || []"
+    [displayWith]="label"
+  />
+</app-label-field>
+
+<app-label-field [label]="'Category:'">
+  <app-select-form-field
+    [formControl]="categoryControl"
+    [options]="(categoryOptions$ | async ) || []"
+    [displayWith]="label"
+  />
+</app-label-field>
+
+<app-label-field [label]="'Fuel:'">
+  <app-select-form-field
+    [formControl]="fuelControl"
+    [options]="(fuelOptions$ | async ) || []"
+    [displayWith]="label"
+  />
+</app-label-field>
+
+<app-label-field [label]="'Amount:'">
+  <app-number-form-field
+    [formControl]="amountControl"
+  />
+</app-label-field>
+
+
+<app-label-field [label]="'Unit:'">
+  <app-select-form-field
+    [formControl]="unitControl"
+    [options]="(unitOptions$ | async ) || []"
+    [displayWith]="label"
+  />
+</app-label-field>
+
+<button
+  mat-raised-button
+  color="accent"
+  style="align-self: center"
+  [disabled]="secondStepForm.invalid"
+  (click)="addEmission(secondStepForm.value)"
+>
+  Add emission
+</button>
+<app-emission-form-table
+  [formValue]="thirdStepForm.value"
+  [showDeleteColumn]="true"
+  (deleteRow)="deleteEmission($event)"
+/>
