@@ -1,0 +1,51 @@
+<div class="main-page">
+  <div class="left-box">
+    <img [src]="'assets/img/logo.png'" height="128" width="128" alt="logo" />
+    <h1>Create your account</h1>
+    <h2>Have an account? <span class="warn-color">Sign in here!</span></h2>
+    <button class="google-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+        <path
+          d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+        />
+      </svg>
+      <span> Google </span>
+    </button>
+    <div class="box-lines">
+      <div class="line"></div>
+      <span>Or with your e-mail and password</span>
+      <div class="line"></div>
+    </div>
+    <form class="login-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>E-mail address</mat-label>
+        <input matInput />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input color="warn" matInput />
+      </mat-form-field>
+    </form>
+    <div class="privacy-box">
+      <mat-checkbox class="checkbox" [color]="'primary'"
+        ><span class="white-color"
+          >I accept the <span class="warn-color">Privacy Policy</span> and the
+          <span class="warn-color">Terms of Service</span></span
+        ></mat-checkbox
+      >
+    </div>
+    <div class="box-info">
+      <span>
+        Remaining configuration details will be accessible through your Company
+        Profile
+      </span>
+    </div>
+    <div class="submit-button">
+      <button [color]="'accent'" mat-flat-button>Sign up</button>
+    </div>
+  </div>
+  <div class="right-box">
+    <img [src]="filePath" alt="logo" />
+  </div>
+</div>

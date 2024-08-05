@@ -39,7 +39,7 @@ body {
 }
 
 @mixin bold {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @mixin regular {
@@ -86,9 +86,8 @@ body {
   @include regular;
 }
 
-
 //MAT CARD
-mat-card{
+mat-card {
   padding: 20px;
   margin: 20px;
 }

@@ -1,0 +1,117 @@
+@import "../../../../styles.scss";
+
+.main-page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  .left-box {
+    width: 35%;
+    background-color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 24px;
+    h1 {
+      @include font-xl;
+      @include bold;
+      color: $warn-color;
+      margin-top: 24px;
+    }
+    h2 {
+      @include font-l;
+      @include bold;
+      color: $white;
+    }
+    .white-color {
+      color: $white;
+    }
+    .warn-color {
+      color: $warn-color;
+    }
+    .google-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      margin-top: 24px;
+      color: black;
+      border: none;
+      width: 164px;
+      border-radius: 4px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition:
+        background-color 0.3s,
+        box-shadow 0.3s;
+      span {
+        margin-top: 2px;
+      }
+    }
+
+    .google-button svg {
+      margin-right: 8px;
+      width: 20px;
+      height: 20px;
+      filter: invert(40%) sepia(61%) saturate(5907%) hue-rotate(133deg)
+        brightness(100%) contrast(94%);
+    }
+
+    .google-button:hover {
+      background-color: #d2d2d2;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .google-button:active {
+      background-color: #d2d2d2;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .box-lines {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      align-items: center;
+      color: #d2d2d2;
+      font-size: 12px;
+      .line {
+        width: 64px;
+        height: 1px;
+        border-radius: 1px;
+        background-color: #d2d2d2;
+        margin: 0px 4px 0px 4px;
+      }
+    }
+    .login-form {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+    }
+    .privacy-box {
+      .checkbox {
+        color: $white;
+      }
+    }
+    .submit-button {
+      display: flex;
+      width: 70%;
+      margin-top: 24px;
+      justify-content: right;
+    }
+    .box-info {
+      @include font-s;
+      color: #d2d2d2;
+    }
+  }
+  .right-box {
+    width: 65%;
+  }
+  .right-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

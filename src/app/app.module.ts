@@ -6,14 +6,15 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShellModule } from './shell/shell.module';
-import { EmissionFactorModule } from './emission-factor/emission-factor.module';
 import { HttpInterceptorProviders } from './http-interceptors';
+import { LoginRoutingModule } from './login/login.routing-module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     ShellRoutingModule,
+    LoginRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
     BrowserAnimationsModule,

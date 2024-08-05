@@ -1,1 +1,5 @@
-<app-template></app-template>
+@if (!isUserLogged) {
+  <router-outlet></router-outlet>
+} @else {
+  <app-template></app-template>
+}
