@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 
 export const hasCompanyGuard: CanActivateFn = () => {
   const router: Router = inject(Router);
-  return of(true).pipe(
+  return of(false).pipe(
     map((company: boolean): UrlTree | boolean =>
       !company ? router.createUrlTree(['landing']) : true,
     ),

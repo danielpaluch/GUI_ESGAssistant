@@ -11,8 +11,7 @@ export class LandingContainerComponent {
     null,
     [Validators.required],
   );
-  codeControl: FormControl<string | null> = new FormControl<string | null>(
-    null,
-    [Validators.required],
-  );
+
+  addCompany(){}
+
 }
