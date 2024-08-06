@@ -4,19 +4,18 @@
   align-items: center;
   padding-right: 20px;
 
-  .user{
+  .user {
     display: flex;
     flex-direction: column;
-    .bold-txt-s{
-      color: var(--accent, #0B6E4F);
+    .bold-txt-s {
+      color: var(--accent, #0b6e4f);
     }
   }
 
-  mat-icon.person{
-    color: var(--accent, #0B6E4F);
+  mat-icon.person {
+    color: var(--accent, #0b6e4f);
     height: 52px;
     width: 52px;
     font-size: 52px;
   }
-
 }

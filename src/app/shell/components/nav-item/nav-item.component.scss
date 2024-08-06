@@ -1,25 +1,33 @@
-a {
-  color: white;
-  text-decoration: none;
-  display: flex;
-  gap:10px;
+:host {
+  padding: 10px 20px;
+  border-radius: 32px;
 
-  mat-icon {
-    height: 30px;
-    width: 30px;
-    font-size: 30px;
+  &:hover {
+    opacity: 0.7;
+  }
+  a {
     color: white;
-  }
-  &.active{
-    mat-icon{
-      color: var(--secondary_accent, #08A045);
-    }
-    span{
-      color: var(--secondary_accent, #08A045);
-    }
-  }
+    text-decoration: none;
+    display: flex;
+    gap: 10px;
 
-  span{
-    align-self: center;
+    mat-icon {
+      height: 30px;
+      width: 30px;
+      font-size: 30px;
+      color: white;
+    }
+    &.active {
+      mat-icon {
+        color: var(--secondary_accent, #08a045);
+      }
+      span {
+        color: var(--secondary_accent, #08a045);
+      }
+    }
+
+    span {
+      align-self: center;
+    }
   }
 }

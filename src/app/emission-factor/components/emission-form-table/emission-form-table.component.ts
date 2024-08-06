@@ -1,8 +1,22 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { MatTableModule} from "@angular/material/table";
-import {MatButton, MatIconButton, MatMiniFabButton} from "@angular/material/button";
-import {EmissionFormModel, EmissionList} from "../../models/emission-form.model";
-import {MatIcon} from "@angular/material/icon";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+import {
+  MatButton,
+  MatIconButton,
+  MatMiniFabButton,
+} from '@angular/material/button';
+import {
+  EmissionFormModel,
+  EmissionList,
+} from '../../models/emission-form.model';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-emission-form-table',
@@ -12,29 +26,27 @@ import {MatIcon} from "@angular/material/icon";
     MatButton,
     MatIcon,
     MatMiniFabButton,
-    MatIconButton
+    MatIconButton,
   ],
   templateUrl: './emission-form-table.component.html',
   styleUrl: './emission-form-table.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmissionFormTableComponent implements OnInit{
-
+export class EmissionFormTableComponent implements OnInit {
   @Input() formValue: Partial<EmissionList>;
 
   @Input() showDeleteColumn = false;
 
-  @Output() readonly deleteRow: EventEmitter<number> = new EventEmitter<number>();
-
+  @Output() readonly deleteRow: EventEmitter<number> =
+    new EventEmitter<number>();
 
   displayedColumns: string[] = ['type', 'category', 'fuel', 'amount', 'unit'];
 
   ngOnInit() {
-    if (this.showDeleteColumn) this.displayedColumns.push('delete')
+    if (this.showDeleteColumn) this.displayedColumns.push('delete');
   }
 
-  public get dataSource(){
+  public get dataSource() {
     return this.formValue.emissions || [];
   }
 
@@ -42,12 +54,13 @@ export class EmissionFormTableComponent implements OnInit{
     return Object.keys(this.groupedEmissions);
   }
 
-  public remove(index: number){
-    this.deleteRow.emit(index)
+  public remove(index: number) {
+    this.deleteRow.emit(index);
   }
 
   public get groupedEmissions() {
-    const emissions: (Partial<EmissionFormModel> | undefined)[] = this.formValue.emissions || [];
+    const emissions: (Partial<EmissionFormModel> | undefined)[] =
+      this.formValue.emissions || [];
 
     const groups: Record<string, Partial<EmissionFormModel>[]> = {};
 

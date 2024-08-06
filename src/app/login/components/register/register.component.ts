@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
-  filePath: string = '';
+  filePath = '';
 
   constructor(public router: Router) {
     this.generateRandomNumber();

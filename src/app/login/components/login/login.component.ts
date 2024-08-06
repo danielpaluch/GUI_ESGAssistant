@@ -11,7 +11,7 @@ import { MaterialModule } from 'src/app/material.module';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  filePath: string = '';
+  filePath = '';
 
   constructor(public router: Router) {
     this.generateRandomNumber();

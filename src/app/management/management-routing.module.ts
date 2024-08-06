@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ManagementContainerComponent} from "./components/management-container/management-container.component";
+import { ManagementContainerComponent } from './components/management-container/management-container.component';
 
 const routes: Routes = [
   {

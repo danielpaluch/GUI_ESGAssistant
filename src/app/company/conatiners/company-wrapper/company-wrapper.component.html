@@ -1,0 +1,13 @@
+<section class="wrapper">
+  @if (title$ | async; as title) {
+    <app-header [title]="title"></app-header>
+  }
+
+  @if (navigationConfig$ | async; as conf) {
+    <app-nav [navigationConfig]="conf"></app-nav>
+  }
+
+  <div class="content">
+    <router-outlet />
+  </div>
+</section>

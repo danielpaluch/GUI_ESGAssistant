@@ -1,0 +1,19 @@
+.landing-container {
+  background-image: url('/assets/img/landing-background.png');
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  grid-template-columns: 260px 1fr;
+  grid-template-areas:
+    'sd main'
+    'sd main';
+
+  app-left-menu {
+    grid-area: sd;
+
+    width: 600px;
+    height: 100%;
+    background-color: var(--primary, #163564);
+  }
+}

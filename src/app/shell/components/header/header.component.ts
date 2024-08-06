@@ -1,16 +1,14 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {UserInfoComponent} from "../user-info/user-info.component";
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule, UserInfoComponent],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
-  @Input() !title=''
-
+  @Input() title = '';
 }

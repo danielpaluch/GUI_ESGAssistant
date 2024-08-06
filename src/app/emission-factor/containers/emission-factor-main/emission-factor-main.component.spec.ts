@@ -8,7 +8,7 @@ describe('EmissionFactorMainComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EmissionFactorMainComponent]
+      declarations: [EmissionFactorMainComponent],
     });
     fixture = TestBed.createComponent(EmissionFactorMainComponent);
     component = fixture.componentInstance;

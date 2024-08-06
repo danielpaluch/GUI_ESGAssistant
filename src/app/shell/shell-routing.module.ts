@@ -1,43 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@auth0/auth0-angular';
+import { hasCompanyGuard } from './guards/company.guard';
 
 const routes: Routes = [
   {
-    path: 'asd',
-    pathMatch: 'full',
-    redirectTo: 'overview',
-  },
-  {
-    path: 'overview',
-    loadChildren: () =>
-      import('../overview/overview.module').then((m) => m.OverviewModule),
-  },
-  {
-    path: 'esg',
-    loadChildren: () =>
-      import('../emission-factor/emission-factor.module').then(
-        (m) => m.EmissionFactorModule,
-      ),
-  },
-  {
-    path: 'reports',
-    loadChildren: () =>
-      import('../reports/reports.module').then((m) => m.ReportsModule),
-  },
-  {
-    path: 'management',
-    loadChildren: () =>
-      import('../management/management.module').then((m) => m.ManagementModule),
-  },
-  {
-    path: 'settings',
-    loadChildren: () =>
-      import('../settings/settings.module').then((m) => m.SettingsModule),
-  },
-  {
-    path: 'analyse',
-    loadChildren: () =>
-      import('../analyse/analyse.module').then((m) => m.AnalyseModule),
+    path: '',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'company',
+        pathMatch: 'full',
+      },
+      {
+        path: 'company',
+        canActivate: [hasCompanyGuard],
+        loadChildren: () =>
+          import('../company/company.module').then((m) => m.CompanyModule),
+      },
+      {
+        path: 'landing',
+        loadChildren: () =>
+          import('../landing/landing.module').then((m) => m.LandingModule),
+      },
+    ],
   },
 ];
 
