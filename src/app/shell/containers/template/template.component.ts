@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, map, Observable } from 'rxjs';
+import { CompanyRoutesEnum } from '../../../company/const/company-routes.const';
 
 @Component({
   selector: 'app-template',
@@ -8,51 +9,54 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
   styleUrls: ['./template.component.scss'],
 })
 export class TemplateComponent {
-  navigationConfig$ = new BehaviorSubject<NavigationConfig[]>(navigationConfig);
+  navigationConfig: NavigationConfig[] = navigationConfig;
 
   constructor(private router: Router) {}
-  get title$(): Observable<string> {
-    return this.navigationConfig$.asObservable().pipe(
-      map((navigateConfigs: NavigationConfig[]) => {
-        const matchedConfig = navigateConfigs.find(
-          (navigateConfig: NavigationConfig) =>
-            this.router.url.includes(navigateConfig.route),
-        );
 
-        return matchedConfig ? matchedConfig.title : 'Default title';
-      }),
+  get title$(): Observable<string> {
+    return this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.getTitle()),
     );
+  }
+
+  private getTitle(): string {
+    const routeConfig: NavigationConfig | undefined =
+      this.navigationConfig.find((config: NavigationConfig) =>
+        this.router.url.includes(config.route),
+      );
+    return routeConfig ? routeConfig.title : 'Unknown';
   }
 }
 
 export const navigationConfig: NavigationConfig[] = [
   {
-    route: 'overview',
+    route: CompanyRoutesEnum.OVERVIEW,
     icon: 'home',
     title: 'Overview',
   },
   {
-    route: 'esg',
+    route: CompanyRoutesEnum.ESG,
     icon: 'folder',
     title: 'ESG',
   },
   {
-    route: 'reports',
+    route: CompanyRoutesEnum.REPORTS,
     icon: 'list_alt',
     title: 'Reports',
   },
   {
-    route: 'management',
+    route: CompanyRoutesEnum.MANAGEMENT,
     icon: 'supervisor_account',
     title: 'Management',
   },
   {
-    route: 'settings',
+    route: CompanyRoutesEnum.MANAGEMENT,
     icon: 'settings',
     title: 'Settings',
   },
   {
-    route: 'analyse',
+    route: CompanyRoutesEnum.ANALYSE,
     icon: 'assessment',
     title: 'Analyse',
   },

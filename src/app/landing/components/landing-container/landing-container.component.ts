@@ -12,6 +12,5 @@ export class LandingContainerComponent {
     [Validators.required],
   );
 
-  addCompany(){}
-
+  addCompany() {}
 }
