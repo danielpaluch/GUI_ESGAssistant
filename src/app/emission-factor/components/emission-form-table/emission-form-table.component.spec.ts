@@ -8,9 +8,8 @@ describe('EmissionFormTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmissionFormTableComponent]
-    })
-    .compileComponents();
+      imports: [EmissionFormTableComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EmissionFormTableComponent);
     component = fixture.componentInstance;

@@ -1,15 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {SettingsRoutingModule} from "./settings-routing.module";
-import {SettingsContainerComponent} from "./components/settings-container/settings-container.component";
+import { SettingsRoutingModule } from './settings-routing.module';
+import { SettingsContainerComponent } from './components/settings-container/settings-container.component';
 
 @NgModule({
-  declarations: [
-    SettingsContainerComponent
-  ],
-  imports: [
-    CommonModule,
-    SettingsRoutingModule
-  ]
+  declarations: [SettingsContainerComponent],
+  imports: [CommonModule, SettingsRoutingModule],
 })
-export class SettingsModule { }
+export class SettingsModule {}

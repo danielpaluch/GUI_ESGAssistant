@@ -8,7 +8,7 @@ describe('WizardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EmissionWizardComponent]
+      declarations: [EmissionWizardComponent],
     });
     fixture = TestBed.createComponent(EmissionWizardComponent);
     component = fixture.componentInstance;

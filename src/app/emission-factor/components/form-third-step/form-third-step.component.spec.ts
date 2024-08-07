@@ -8,9 +8,8 @@ describe('FormThirdStepComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormThirdStepComponent]
-    })
-    .compileComponents();
+      imports: [FormThirdStepComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormThirdStepComponent);
     component = fixture.componentInstance;

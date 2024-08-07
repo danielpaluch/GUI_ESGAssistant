@@ -1,7 +1,7 @@
 <app-label-field [label]="'Type:'">
   <app-select-form-field
     [formControl]="typeControl"
-    [options]="(typeOptions$ | async ) || []"
+    [options]="(typeOptions$ | async) || []"
     [displayWith]="label"
   />
 </app-label-field>
@@ -9,7 +9,7 @@
 <app-label-field [label]="'Category:'">
   <app-select-form-field
     [formControl]="categoryControl"
-    [options]="(categoryOptions$ | async ) || []"
+    [options]="(categoryOptions$ | async) || []"
     [displayWith]="label"
   />
 </app-label-field>
@@ -17,22 +17,19 @@
 <app-label-field [label]="'Fuel:'">
   <app-select-form-field
     [formControl]="fuelControl"
-    [options]="(fuelOptions$ | async ) || []"
+    [options]="(fuelOptions$ | async) || []"
     [displayWith]="label"
   />
 </app-label-field>
 
 <app-label-field [label]="'Amount:'">
-  <app-number-form-field
-    [formControl]="amountControl"
-  />
+  <app-number-form-field [formControl]="amountControl" />
 </app-label-field>
-
 
 <app-label-field [label]="'Unit:'">
   <app-select-form-field
     [formControl]="unitControl"
-    [options]="(unitOptions$ | async ) || []"
+    [options]="(unitOptions$ | async) || []"
     [displayWith]="label"
   />
 </app-label-field>

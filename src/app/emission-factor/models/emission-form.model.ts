@@ -1,5 +1,9 @@
-import {CategoryConfig, FuelConfig, TypeConfig, UnitConfig} from "./emission.model";
-
+import {
+  CategoryConfig,
+  FuelConfig,
+  TypeConfig,
+  UnitConfig,
+} from './emission.model';
 
 export interface EmissionList {
   emissions: Partial<EmissionFormModel>[];
@@ -13,9 +17,8 @@ export interface EmissionFormModel {
   unit: UnitConfig | null;
 }
 
-
 export interface EmissionFactor {
   alias: string;
   description: string;
-  emissions: Partial<EmissionList>
+  emissions: Partial<EmissionList>;
 }

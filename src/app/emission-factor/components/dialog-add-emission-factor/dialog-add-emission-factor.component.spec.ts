@@ -8,9 +8,8 @@ describe('AddEmissionFactorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogAddEmissionFactorComponent]
-    })
-    .compileComponents();
+      imports: [DialogAddEmissionFactorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DialogAddEmissionFactorComponent);
     component = fixture.componentInstance;

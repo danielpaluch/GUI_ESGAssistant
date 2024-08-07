@@ -1,0 +1,29 @@
+<div class="landing-container">
+  <app-left-menu>
+    <div style="display: flex; flex-direction: column; align-items: center">
+      <div>
+        <div style="color: white; padding: 4px 0" class="regular-txt-l">
+          Add company name
+        </div>
+        <app-text-form-field
+          [label]="'Company name'"
+          [formControl]="companyControl"
+        />
+      </div>
+
+      <p class="bold-txt-m">
+        Remaining configuration details will be accessible through your Company
+        Profile
+      </p>
+
+      <button
+        type="button"
+        mat-raised-button
+        color="accent"
+        (click)="addCompany()"
+      >
+        Create!
+      </button>
+    </div>
+  </app-left-menu>
+</div>

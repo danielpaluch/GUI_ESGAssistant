@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
-
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -26,10 +31,10 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
           error.status,
           customErrorMessage,
           error.error,
-          errorNumber
+          errorNumber,
         );
         return throwError(customError);
-      })
+      }),
     );
   }
 }
@@ -39,7 +44,7 @@ export class CustomError extends Error {
     public status: number,
     public override message: string,
     public originalError: HttpErrorResponse,
-    public errorNumber: number
+    public errorNumber: number,
   ) {
     super(message);
     this.name = 'CustomErrorHandler';

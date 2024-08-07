@@ -1,14 +1,9 @@
-@defer(when steps) {
-  <app-emission-wizard
-    [steps]="steps"
-    (submitEvent)="onSave()"
-  />
+@defer (when steps) {
+  <app-emission-wizard [steps]="steps" (submitEvent)="onSave()" />
 }
 
 <ng-template #firstStep>
-  <app-form-first-step
-    [form]= "firstStepForm"
-  />
+  <app-form-first-step [form]="firstStepForm" />
 </ng-template>
 
 <ng-template #secondStep>
@@ -19,7 +14,5 @@
 </ng-template>
 
 <ng-template #thirdStep>
-  <app-form-third-step
-    [thirdStepForm]="thirdStepForm"
-  />
+  <app-form-third-step [thirdStepForm]="thirdStepForm" />
 </ng-template>

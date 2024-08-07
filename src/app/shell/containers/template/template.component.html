@@ -1,0 +1,10 @@
+<section class="wrapper">
+  @if (title$ | async; as title) {
+    <app-header [title]="title"></app-header>
+  }
+  <app-nav [navigationConfig]="navigationConfig"></app-nav>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</section>

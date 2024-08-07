@@ -1,8 +1,20 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {EmissionStepper} from "../../../esg-lib/models/wizard.model";
-import {AsyncPipe, JsonPipe, NgClass, NgTemplateOutlet} from "@angular/common";
-import {MatButtonModule} from "@angular/material/button";
-import {MatStepper, MatStepperModule} from "@angular/material/stepper";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { EmissionStepper } from '../../../esg-lib/models/wizard.model';
+import {
+  AsyncPipe,
+  JsonPipe,
+  NgClass,
+  NgTemplateOutlet,
+} from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-emission-wizard',
@@ -14,21 +26,20 @@ import {MatStepper, MatStepperModule} from "@angular/material/stepper";
     NgClass,
     MatButtonModule,
     JsonPipe,
-    MatStepperModule
+    MatStepperModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./emission-wizard.component.scss']
+  styleUrls: ['./emission-wizard.component.scss'],
 })
 export class EmissionWizardComponent {
-
-  @Input() steps:EmissionStepper;
+  @Input() steps: EmissionStepper;
 
   @Output() readonly submitEvent = new EventEmitter<void>();
 
   @ViewChild('stepper') stepper: MatStepper;
 
-  public get stepperIndex(): number{
-    if(this.stepper){
+  public get stepperIndex(): number {
+    if (this.stepper) {
       return this.stepper.selectedIndex;
     }
     return 0;
@@ -39,10 +50,10 @@ export class EmissionWizardComponent {
   }
 
   public get last(): boolean {
-    return this.stepperIndex + 1 ===  this.getStepKeys.length;
+    return this.stepperIndex + 1 === this.getStepKeys.length;
   }
 
-  public submitForm(){
-    this.submitEvent.emit()
+  public submitForm() {
+    this.submitEvent.emit();
   }
 }

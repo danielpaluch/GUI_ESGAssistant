@@ -1,9 +1,12 @@
-<img [ngSrc]="'assets/img/logo.png'" height="128" width="128" alt="logo" priority>
-<app-nav-list
-  [navigationConfig]="navigationConfig"
-/>
-<app-nav-item
-  class="regular-txt-l"
-  [icon]="'logout'"
-  [title]="'Logout'"
-/>
+<app-left-menu>
+  <app-nav-list [navigationConfig]="navigationConfig" />
+  <button
+    mat-fab
+    extended
+    class="logout-button regular-txt-l"
+    (click)="logout()"
+  >
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+</app-left-menu>
