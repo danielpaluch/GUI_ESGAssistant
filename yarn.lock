@@ -1853,6 +1853,13 @@
   resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-18.1.3.tgz"
   integrity sha512-VmqOO8CcXKL06anNYlL0OkrqIuBNZQu5n0YVP4z8oneJhDBqwK2++dK0WpcNyIFcg3HsQ7w3BuqUWJ4iPiWxEQ==
 
+"@ngxs/store@18.1.1":
+  version "18.1.1"
+  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-18.1.1.tgz#e208cc8bb268a8840952ce28743b5ebf8ac1a116"
+  integrity sha512-qbmp/lrtP/Q6QeF+t0OblR8HN0rkO1wn/5pbMv/XOOeLX6wmTz3uRbw1ce1pOxxKax8wH11IhHRXEE8k4v3Ynw==
+  dependencies:
+    tslib "^2.3.0"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"

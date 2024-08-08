@@ -9,6 +9,21 @@ import { CardComponent } from '../esg-lib/components/card/card.component';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { EmissionFormTableComponent } from './components/emission-form-table/emission-form-table.component';
 import { MatStepperPrevious } from '@angular/material/stepper';
+import { EmissionTableComponent } from './components/emission-table/emission-table.component';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+} from '@angular/material/table';
+import { MatIcon } from '@angular/material/icon';
+import { TableComponent } from '../esg-lib/components/table/table.component';
 
 const MATERIAL_MODULES = [
   MatCardModule,
@@ -19,7 +34,7 @@ const MATERIAL_MODULES = [
 ];
 
 @NgModule({
-  declarations: [EmissionFactorMainComponent],
+  declarations: [EmissionFactorMainComponent, EmissionTableComponent],
   imports: [
     MATERIAL_MODULES,
     EmissionFactorRoutingModule,
@@ -27,6 +42,18 @@ const MATERIAL_MODULES = [
     CardComponent,
     EmissionFormTableComponent,
     MatStepperPrevious,
+    MatTable,
+    MatCell,
+    MatCellDef,
+    MatColumnDef,
+    MatHeaderCell,
+    MatIcon,
+    MatHeaderCellDef,
+    MatHeaderRow,
+    MatRow,
+    MatHeaderRowDef,
+    MatRowDef,
+    TableComponent,
   ],
 })
 export class EmissionFactorModule {}

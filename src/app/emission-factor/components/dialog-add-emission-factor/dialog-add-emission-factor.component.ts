@@ -82,7 +82,7 @@ export class DialogAddEmissionFactorComponent implements AfterViewInit {
     const emissionFactor: EmissionFactor = {
       alias: alias ?? '',
       description: description ?? '',
-      emissions: this.thirdStepForm.value,
+      emissions: this.thirdStepForm.emissionsThirdStepValues,
     };
     this.dialogRef.close(emissionFactor);
   }

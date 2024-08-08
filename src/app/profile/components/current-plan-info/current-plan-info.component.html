@@ -1,0 +1,33 @@
+<app-card [title]="'Current plan'">
+  <div content>
+    <div class="subscription-info">
+      <div class="info-row">
+        <div class="info-label">Version:</div>
+        <div class="info-value">{{ version }}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info-row">
+        <div class="info-label">Activated:</div>
+        <div class="info-value">
+          <mat-icon class="material-icons color_green"
+            >check_circle_outline</mat-icon
+          >
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info-row">
+        <div class="info-label">Start date:</div>
+        <div class="info-value">
+          {{ startDate | date: 'dd.MM.yyyy h:mm:ss' }}
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info-row">
+        <div class="info-label">Expiration date:</div>
+        <div class="info-value">
+          {{ expirationDate | date: 'dd.MM.yyyy h:mm:ss' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</app-card>

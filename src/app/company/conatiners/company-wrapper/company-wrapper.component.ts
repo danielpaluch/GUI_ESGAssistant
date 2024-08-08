@@ -52,6 +52,11 @@ export const navigationConfig: NavigationConfig[] = [
     title: 'Management',
   },
   {
+    route: 'profile',
+    icon: 'account_circle',
+    title: 'Business Profile',
+  },
+  {
     route: 'settings',
     icon: 'settings',
     title: 'Settings',

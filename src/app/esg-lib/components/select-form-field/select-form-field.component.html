@@ -1,4 +1,4 @@
-<mat-form-field>
+<mat-form-field [appearance]="'outline'">
   @if (label) {
     <mat-label>{{ label }}</mat-label>
   }
@@ -10,4 +10,15 @@
       <mat-option [value]="option">{{ displayWith(option) }}</mat-option>
     }
   </mat-select>
+  @if (!formControl.untouched) {
+    @if (formControl.hasError('required')) {
+      <mat-error>This field is required</mat-error>
+    }
+    @if (formControl.hasError('minLength')) {
+      <mat-error>This field has too few characters</mat-error>
+    }
+    @if (formControl.hasError('maxLength')) {
+      <mat-error>This field has too many characters</mat-error>
+    }
+  }
 </mat-form-field>

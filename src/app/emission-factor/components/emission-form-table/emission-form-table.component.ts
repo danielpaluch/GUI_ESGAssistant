@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
@@ -17,6 +16,11 @@ import {
   EmissionList,
 } from '../../models/emission-form.model';
 import { MatIcon } from '@angular/material/icon';
+import {
+  ITableColumn,
+  TableComponent,
+} from '../../../esg-lib/components/table/table.component';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-emission-form-table',
@@ -27,26 +31,53 @@ import { MatIcon } from '@angular/material/icon';
     MatIcon,
     MatMiniFabButton,
     MatIconButton,
+    TableComponent,
+    MatTabGroup,
+    MatTab,
   ],
   templateUrl: './emission-form-table.component.html',
   styleUrl: './emission-form-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmissionFormTableComponent implements OnInit {
-  @Input() formValue: Partial<EmissionList>;
+export class EmissionFormTableComponent {
+  @Input() formValue: EmissionList;
 
   @Input() showDeleteColumn = false;
 
   @Output() readonly deleteRow: EventEmitter<number> =
     new EventEmitter<number>();
 
+  columns: ITableColumn<EmissionFormModel>[] = [
+    {
+      name: 'type',
+      header: 'Type',
+      accessor: (emission: EmissionFormModel) => emission.type?.label,
+    },
+    {
+      name: 'category',
+      header: 'Category',
+      accessor: (emission: EmissionFormModel) => emission.category?.label,
+    },
+    {
+      name: 'fuel',
+      header: 'Fuel',
+      accessor: (emission: EmissionFormModel) => emission.fuel?.label,
+    },
+    {
+      name: 'amount',
+      header: 'Amount',
+      accessor: (emission: EmissionFormModel) => emission.amount,
+    },
+    {
+      name: 'unit',
+      header: 'Unit',
+      accessor: (emission: EmissionFormModel) => emission.unit?.label,
+    },
+  ];
+
   displayedColumns: string[] = ['type', 'category', 'fuel', 'amount', 'unit'];
 
-  ngOnInit() {
-    if (this.showDeleteColumn) this.displayedColumns.push('delete');
-  }
-
-  public get dataSource() {
+  public get dataSource(): EmissionFormModel[] {
     return this.formValue.emissions || [];
   }
 
@@ -54,15 +85,15 @@ export class EmissionFormTableComponent implements OnInit {
     return Object.keys(this.groupedEmissions);
   }
 
-  public remove(index: number) {
-    this.deleteRow.emit(index);
-  }
+  // public remove(index: number) {
+  //   this.deleteRow.emit(index);
+  // }
 
   public get groupedEmissions() {
-    const emissions: (Partial<EmissionFormModel> | undefined)[] =
+    const emissions: (EmissionFormModel | undefined)[] =
       this.formValue.emissions || [];
 
-    const groups: Record<string, Partial<EmissionFormModel>[]> = {};
+    const groups: Record<string, EmissionFormModel[]> = {};
 
     for (const emission of emissions) {
       if (!emission) continue;

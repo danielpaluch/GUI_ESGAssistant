@@ -1,8 +1,12 @@
-import {Component, DestroyRef} from '@angular/core';
+import { Component, DestroyRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EmissionFactor } from '../../models/emission-form.model';
 import { DialogAddEmissionFactorComponent } from '../../components/dialog-add-emission-factor/dialog-add-emission-factor.component';
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Store } from '@ngxs/store';
+import { AddEmissionFactor } from '../../actions/emission-table.action';
+import { Observable } from 'rxjs';
+import { EmissionFactorState } from '../../state/emission-table.state';
 
 @Component({
   selector: 'app-emission-factor-main',
@@ -10,9 +14,15 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
   styleUrls: ['./emission-factor-main.component.scss'],
 })
 export class EmissionFactorMainComponent {
-  components: EmissionFactor[] = [];
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly destroyRef: DestroyRef,
+    private readonly store: Store,
+  ) {}
 
-  constructor(private readonly dialog: MatDialog, private readonly destroyRef: DestroyRef) {}
+  get emissionFactors$(): Observable<EmissionFactor[]> {
+    return this.store.select(EmissionFactorState.getEmissionFactors);
+  }
 
   public addEmissionFactor(): void {
     const dialogRef = this.dialog.open(DialogAddEmissionFactorComponent);
@@ -22,7 +32,7 @@ export class EmissionFactorMainComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((data: EmissionFactor | undefined | null) => {
         if (data) {
-          this.components.push(data);
+          this.store.dispatch(new AddEmissionFactor(data));
         }
       });
   }

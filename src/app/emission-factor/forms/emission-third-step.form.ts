@@ -1,10 +1,10 @@
 import { FormArray, FormGroup, Validators } from '@angular/forms';
+import {
+  EmissionFormModel,
+  EmissionThirdStepControls,
+  EmissionThirdStepValues,
+} from '../models/emission-form.model';
 import { EmissionSecondStepGroup } from './emission-second-step.form';
-import { EmissionFormModel } from '../models/emission-form.model';
-
-export interface EmissionThirdStepControls {
-  emissions: FormArray<EmissionSecondStepGroup>;
-}
 
 export class EmissionThirdStepGroup extends FormGroup<EmissionThirdStepControls> {
   constructor() {
@@ -16,9 +16,9 @@ export class EmissionThirdStepGroup extends FormGroup<EmissionThirdStepControls>
     });
   }
 
-  public addNewEmission(emission: Partial<EmissionFormModel>) {
+  public addNewEmission(emission: EmissionFormModel) {
     const emissionSecondStepFrom = new EmissionSecondStepGroup();
-    emissionSecondStepFrom.patchValue(emission);
+    emissionSecondStepFrom.setValue(emission);
     this.controls.emissions.push(emissionSecondStepFrom);
   }
 
@@ -28,5 +28,21 @@ export class EmissionThirdStepGroup extends FormGroup<EmissionThirdStepControls>
 
   public getEmissionOnIndex(index: number) {
     return this.controls.emissions.at(index);
+  }
+
+  public get emissionsThirdStepValues(): EmissionThirdStepValues {
+    return {
+      emissions: this.controls.emissions.controls.map(
+        (emission: EmissionSecondStepGroup): EmissionFormModel => {
+          return {
+            amount: emission.controls.amount.value,
+            type: emission.controls.type.value,
+            category: emission.controls.category.value,
+            fuel: emission.controls.fuel.value,
+            unit: emission.controls.unit.value,
+          };
+        },
+      ),
+    };
   }
 }

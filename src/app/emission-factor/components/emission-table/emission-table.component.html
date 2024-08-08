@@ -1,0 +1,20 @@
+<app-table
+  [data]="emissionFactors"
+  [displayedColumns]="displayedColumns"
+  [columns]="columns"
+  [emptyTableTemplate]="empty"
+  [optionsEnabled]="true"
+  (rowEditEvent)="edit($event)"
+  (rowDeleteEvent)="delete($event)"
+/>
+
+<ng-template #empty>
+  <div class="empty-container">
+    <span class="empty-text"
+      >Empty emission list? Add first emission to your APP!</span
+    >
+    <button class="add-button" mat-raised-button color="accent" (click)="add()">
+      ADD
+    </button>
+  </div>
+</ng-template>

@@ -12,6 +12,8 @@ import { HttpInterceptorProviders } from './http-interceptors';
 import { provideAuth0 } from '@auth0/auth0-angular';
 import { env } from '../env/env';
 import { RouterOutlet } from '@angular/router';
+import { NgxsModule } from '@ngxs/store';
+import { EmissionFactorState } from './emission-factor/state/emission-table.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,9 @@ import { RouterOutlet } from '@angular/router';
     BrowserAnimationsModule,
     ShellModule,
     RouterOutlet,
+    NgxsModule.forRoot([EmissionFactorState], {
+      developmentMode: /** !environment.production */ false,
+    }),
   ],
   providers: [
     HttpInterceptorProviders,

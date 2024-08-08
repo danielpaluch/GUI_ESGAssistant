@@ -1,0 +1,89 @@
+<mat-table
+  [dataSource]="dataSource"
+  multiTemplateDataRows
+  class="mat-elevation-z2"
+>
+  @for (column of columns; track column) {
+    <ng-container [matColumnDef]="column.name">
+      <mat-header-cell
+        *matHeaderCellDef
+        [style.max-width.px]="column.width || undefined"
+        [style.width.%]="column.widthPercent || 100"
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            column.headerTemplate || defaultHeaderTemplate;
+            context: { $implicit: column }
+          "
+        >
+        </ng-container>
+      </mat-header-cell>
+
+      <mat-cell
+        *matCellDef="let element; let i = dataIndex"
+        [style.max-width.px]="column.width || undefined"
+        [style.width.%]="column.widthPercent || 100"
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            column.dataTemplate || defaultDataTemplate;
+            context: {
+              column: column,
+              element: element,
+              value: column.accessor
+                ? column.accessor(element)
+                : element[column.name],
+              index: i,
+            }
+          "
+        >
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+  }
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <span *matNoDataRow class="empty-row">
+    <div>
+      <ng-container
+        *ngTemplateOutlet="emptyTableTemplate || defaultEmptyTableTemplate"
+      >
+      </ng-container>
+    </div>
+  </span>
+
+  <mat-row
+    (click)="onRowClick(row)"
+    *matRowDef="let row; columns: displayedColumns"
+  ></mat-row>
+</mat-table>
+
+<!--<mat-paginator-->
+<!--  *ngIf="paginatorEnabled"-->
+<!--  [length]="dataSource.length$ | async"-->
+<!--  (page)="pageChanged($event)"-->
+<!--  [pageSize]="itemsPerPage"-->
+<!--  [pageSizeOptions]="pageSizeOptions"-->
+<!--  showFirstLastButtons-->
+<!--&gt;-->
+<!--</mat-paginator>-->
+
+<ng-template #defaultEmptyTableTemplate> Table is empty! </ng-template>
+
+<ng-template #defaultHeaderTemplate let-column>
+  {{ column.header }}
+</ng-template>
+
+<ng-template #defaultDataTemplate let-value="value">
+  {{ value }}
+</ng-template>
+
+<ng-template #optionsTemplate let-value="value">
+  <button mat-icon-button type="button" (click)="onRowDelete(value)">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button mat-icon-button type="button" (click)="onRowEdit(value)">
+    <mat-icon>edit</mat-icon>
+  </button>
+</ng-template>

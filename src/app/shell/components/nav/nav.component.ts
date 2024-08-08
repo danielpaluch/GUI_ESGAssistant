@@ -8,7 +8,7 @@ import { LeftMenuComponent } from '../../../esg-lib/components/left-menu/left-me
 import { AuthService } from '@auth0/auth0-angular';
 import { MatButton, MatFabButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { NavigationConfig } from '../../containers/template/template.component';
+import { NavigationConfig } from '../../../company/conatiners/company-wrapper/company-wrapper.component';
 @Component({
   selector: 'app-nav',
   standalone: true,

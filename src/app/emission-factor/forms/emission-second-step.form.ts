@@ -7,14 +7,10 @@ import {
   TypeConfig,
   UnitConfig,
 } from '../models/emission.model';
-
-export interface EmissionSecondStepControls {
-  type: FormControl<TypeConfig | null>;
-  category: FormControl<CategoryConfig | null>;
-  fuel: FormControl<FuelConfig | null>;
-  amount: FormControl<number | null>;
-  unit: FormControl<UnitConfig | null>;
-}
+import {
+  EmissionFormModel,
+  EmissionSecondStepControls,
+} from '../models/emission-form.model';
 
 export class EmissionSecondStepGroup extends FormGroup<EmissionSecondStepControls> {
   constructor() {
@@ -30,5 +26,15 @@ export class EmissionSecondStepGroup extends FormGroup<EmissionSecondStepControl
       ]),
       unit: new FormControl<UnitConfig | null>(null, [Validators.required]),
     });
+  }
+
+  public get emissionSecondStepValues(): EmissionFormModel {
+    return {
+      amount: this.controls.amount.value,
+      type: this.controls.type.value,
+      category: this.controls.category.value,
+      fuel: this.controls.fuel.value,
+      unit: this.controls.unit.value,
+    };
   }
 }
