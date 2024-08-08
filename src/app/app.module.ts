@@ -21,11 +21,7 @@ import { EmissionFactorState } from './emission-factor/state/emission-table.stat
     BrowserAnimationsModule,
     ShellModule,
     RouterOutlet,
-    NgxsModule.forRoot(
-      [
-        EmissionFactorState
-      ],
-      {
+    NgxsModule.forRoot([EmissionFactorState], {
       developmentMode: false,
     }),
   ],

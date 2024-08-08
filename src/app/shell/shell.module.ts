@@ -5,7 +5,6 @@ import { HeaderComponent } from '../esg-lib/components/header/header.component';
 import { AsyncPipe } from '@angular/common';
 import { ShellRoutingModule } from './shell-routing.module';
 
-
 @NgModule({
   declarations: [],
   exports: [],
