@@ -5,10 +5,8 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShellModule } from './shell/shell.module';
-import { HttpInterceptorProviders } from './http-interceptors';
 import { provideAuth0 } from '@auth0/auth0-angular';
 import { env } from '../env/env';
 import { RouterOutlet } from '@angular/router';
@@ -20,16 +18,18 @@ import { EmissionFactorState } from './emission-factor/state/emission-table.stat
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({}, {}),
     BrowserAnimationsModule,
     ShellModule,
     RouterOutlet,
-    NgxsModule.forRoot([EmissionFactorState], {
-      developmentMode: /** !environment.production */ false,
+    NgxsModule.forRoot(
+      [
+        EmissionFactorState
+      ],
+      {
+      developmentMode: false,
     }),
   ],
   providers: [
-    HttpInterceptorProviders,
     provideHttpClient(withInterceptorsFromDi()),
     provideAuth0({
       domain: env.AUTH0_DOMAIN,

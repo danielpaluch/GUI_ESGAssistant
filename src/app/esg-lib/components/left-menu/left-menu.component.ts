@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavItemComponent } from '../../../shell/components/nav-item/nav-item.component';
-import { NavListComponent } from '../../../shell/components/nav-list/nav-list.component';
+import { NavItemComponent } from '../nav-item/nav-item.component';
+import { NavListComponent } from '../nav-list/nav-list.component';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({

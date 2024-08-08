@@ -5,7 +5,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { inject } from '@angular/core';
-import { ShellRoutes } from '../routes/shell.routes';
+import { ShellRoutes } from '../../shell/routes/shell.routes';
 
 const hasCompany = true;
 

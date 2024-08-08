@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NavListComponent } from '../nav-list/nav-list.component';
 import { NgOptimizedImage } from '@angular/common';
 import { NavItemComponent } from '../nav-item/nav-item.component';
-import { LeftMenuComponent } from '../../../esg-lib/components/left-menu/left-menu.component';
+import { LeftMenuComponent } from '../left-menu/left-menu.component';
 import { AuthService } from '@auth0/auth0-angular';
 import { MatButton, MatFabButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';

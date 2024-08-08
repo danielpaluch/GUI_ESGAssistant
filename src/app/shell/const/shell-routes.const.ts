@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { hasCompanyGuard, noCompanyGuard } from '../guards/company.guard';
+import { hasCompanyGuard, noCompanyGuard } from '../../company/guards/company.guard';
 
 export enum ShellRoutesEnum {
   COMPANY = 'company',

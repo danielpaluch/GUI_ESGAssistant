@@ -9,7 +9,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-select-form-field',
@@ -19,7 +18,6 @@ import { JsonPipe } from '@angular/common';
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
-    JsonPipe,
   ],
   templateUrl: './select-form-field.component.html',
   styleUrl: './select-form-field.component.scss',
