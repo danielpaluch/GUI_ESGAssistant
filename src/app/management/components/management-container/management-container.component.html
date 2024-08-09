@@ -1,3 +1,18 @@
 <app-card [title]="'Management'">
-  <div content></div>
+  <div content>
+    <div cdkDropListGroup>
+      <app-drag-drop-container
+        [label]="'Unassigned users'"
+        [items]="users"
+        (dropEvent)="drop($event)"
+      />
+      @for (team of teams; track team) {
+        <app-drag-drop-container
+          [label]="team.name"
+          [items]="team.members"
+          (dropEvent)="drop($event)"
+        />
+      }
+    </div>
+  </div>
 </app-card>

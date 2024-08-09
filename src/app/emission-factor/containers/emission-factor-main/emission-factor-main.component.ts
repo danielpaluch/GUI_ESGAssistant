@@ -4,9 +4,9 @@ import { EmissionFactor } from '../../models/emission-form.model';
 import { DialogAddEmissionFactorComponent } from '../../components/dialog-add-emission-factor/dialog-add-emission-factor.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngxs/store';
-import { AddEmissionFactor } from '../../actions/emission-table.action';
+import { AddEmissionFactor } from '../../../store/actions/emission-table.action';
 import { Observable } from 'rxjs';
-import { EmissionFactorState } from '../../state/emission-table.state';
+import { EmissionFactorState } from '../../../store/state/emission-table.state';
 
 @Component({
   selector: 'app-emission-factor-main',

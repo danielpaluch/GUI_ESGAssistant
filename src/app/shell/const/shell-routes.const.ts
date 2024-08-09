@@ -4,11 +4,7 @@ import {
   hasCompanyGuard,
   noCompanyGuard,
 } from '../../company/guards/company.guard';
-
-export enum ShellRoutesEnum {
-  COMPANY = 'company',
-  LANDING = 'landing',
-}
+import { ShellRoutesEnum } from '../models/shell-routes.model';
 
 export const shellRoutes: Routes = [
   {

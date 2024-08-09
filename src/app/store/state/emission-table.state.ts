@@ -1,4 +1,4 @@
-import { EmissionFactor } from '../models/emission-form.model';
+import { EmissionFactor } from '../../emission-factor/models/emission-form.model';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   AddEmissionFactor,

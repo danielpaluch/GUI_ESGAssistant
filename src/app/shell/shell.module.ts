@@ -6,8 +6,6 @@ import { AsyncPipe } from '@angular/common';
 import { ShellRoutingModule } from './shell-routing.module';
 
 @NgModule({
-  declarations: [],
-  exports: [],
   imports: [
     RouterOutlet,
     NavComponent,

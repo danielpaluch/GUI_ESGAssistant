@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {
   provideHttpClient,
+  withInterceptors,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShellModule } from './shell/shell.module';
-import { provideAuth0 } from '@auth0/auth0-angular';
+import { authHttpInterceptorFn, provideAuth0 } from '@auth0/auth0-angular';
 import { env } from '../env/env';
 import { RouterOutlet } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
-import { EmissionFactorState } from './emission-factor/state/emission-table.state';
+import { EmissionFactorState } from './store/state/emission-table.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,14 @@ import { EmissionFactorState } from './emission-factor/state/emission-table.stat
       authorizationParams: {
         redirect_uri: window.location.origin,
       },
+      httpInterceptor: {
+        allowedList: [env.URL, env.URL + '*'],
+      },
     }),
+    provideHttpClient(
+      withInterceptorsFromDi(),
+      withInterceptors([authHttpInterceptorFn]),
+    ),
   ],
 })
 export class AppModule {}

@@ -20,6 +20,7 @@
         type="button"
         mat-raised-button
         color="accent"
+        [disabled]="companyControl.invalid"
         (click)="addCompany()"
       >
         Create!
