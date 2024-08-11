@@ -5,11 +5,13 @@ import {
   noCompanyGuard,
 } from '../../company/guards/company.guard';
 import { ShellRoutesEnum } from '../models/shell-routes.model';
+import { ShellContainerComponent } from '../containers/shell-container/shell-container.component';
 
 export const shellRoutes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
+    component: ShellContainerComponent,
     children: [
       {
         path: '',
@@ -24,9 +26,9 @@ export const shellRoutes: Routes = [
       },
       {
         path: ShellRoutesEnum.LANDING,
-        canActivate: [noCompanyGuard],
         loadChildren: () =>
           import('../../landing/landing.module').then((m) => m.LandingModule),
+        canActivate: [noCompanyGuard],
       },
     ],
   },

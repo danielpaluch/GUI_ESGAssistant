@@ -12,7 +12,7 @@ import { FormFirstStepComponent } from '../form-first-step/form-first-step.compo
 import { TextFormFieldComponent } from '../../../esg-lib/components/text-form-field/text-form-field.component';
 import { FormSecondStepComponent } from '../form-second-step/form-second-step.component';
 import { EmissionWizardComponent } from '../emission-wizard/emission-wizard.component';
-import { EmissionFactor } from '../../models/emission-form.model';
+import { EmissionFactor } from '../../models/emission';
 import { FormThirdStepComponent } from '../form-third-step/form-third-step.component';
 import { EmissionFirstStepGroup } from '../../forms/emission-first-step.form';
 import { EmissionSecondStepGroup } from '../../forms/emission-second-step.form';

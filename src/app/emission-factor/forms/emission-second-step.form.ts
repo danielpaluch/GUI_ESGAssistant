@@ -7,10 +7,7 @@ import {
   TypeConfig,
   UnitConfig,
 } from '../models/emission.model';
-import {
-  EmissionFormModel,
-  EmissionSecondStepControls,
-} from '../models/emission-form.model';
+import { Emission, EmissionSecondStepControls } from '../models/emission';
 
 export class EmissionSecondStepGroup extends FormGroup<EmissionSecondStepControls> {
   constructor() {
@@ -28,7 +25,7 @@ export class EmissionSecondStepGroup extends FormGroup<EmissionSecondStepControl
     });
   }
 
-  public get emissionSecondStepValues(): EmissionFormModel {
+  public get emissionSecondStepValues(): Emission {
     return {
       amount: this.controls.amount.value,
       type: this.controls.type.value,

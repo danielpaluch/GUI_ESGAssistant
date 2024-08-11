@@ -2,15 +2,20 @@
   <div class="header bold-txt-l">
     <span class="team-name">{{ label }}</span>
   </div>
-  <div
-    cdkDropList
-    cdkDropListOrientation="mixed"
-    class="example-list"
-    [cdkDropListData]="items"
-    (cdkDropListDropped)="drop($event)"
-  >
-    @for (item of items; track item.name) {
-      <div class="example-box" cdkDrag>{{ item.name }}</div>
-    }
-  </div>
+
+  @if (loading) {
+    <mat-spinner />
+  } @else {
+    <div
+      cdkDropList
+      cdkDropListOrientation="mixed"
+      class="example-list"
+      [cdkDropListData]="items"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (item of items; track item.name) {
+        <div class="example-box" cdkDrag>{{ item.name }}</div>
+      }
+    </div>
+  }
 </div>

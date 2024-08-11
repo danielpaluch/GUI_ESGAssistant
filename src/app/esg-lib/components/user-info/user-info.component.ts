@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '@auth0/auth0-angular';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { Store } from '@ngxs/store';
+import { Company, CompanyState } from '../../../company/state/company.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-info',
@@ -14,6 +17,11 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 export class UserInfoComponent {
   authUser = inject(AuthService);
 
+  store = inject(Store);
+
+  get company$(): Observable<Company | null> {
+    return this.store.select(CompanyState.getFirstCompany);
+  }
   get user$() {
     return this.authUser.user$;
   }

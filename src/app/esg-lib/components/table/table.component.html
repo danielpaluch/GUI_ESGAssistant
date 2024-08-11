@@ -1,3 +1,9 @@
+@if (loading) {
+  <div class="loading-overlay">
+    <mat-spinner></mat-spinner>
+  </div>
+}
+
 <mat-table
   [dataSource]="dataSource"
   multiTemplateDataRows
@@ -45,12 +51,9 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
   <span *matNoDataRow class="empty-row">
-    <div>
-      <ng-container
-        *ngTemplateOutlet="emptyTableTemplate || defaultEmptyTableTemplate"
-      >
-      </ng-container>
-    </div>
+    <ng-container
+      *ngTemplateOutlet="emptyTableTemplate || defaultEmptyTableTemplate"
+    />
   </span>
 
   <mat-row
@@ -58,7 +61,14 @@
     *matRowDef="let row; columns: displayedColumns"
   ></mat-row>
 </mat-table>
-
+@if (pagination) {
+  <mat-paginator
+    [length]="dataSource.data.length"
+    [pageSize]="pageSizeOptions[0]"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChanged($event)"
+  />
+}
 <!--<mat-paginator-->
 <!--  *ngIf="paginatorEnabled"-->
 <!--  [length]="dataSource.length$ | async"-->

@@ -12,7 +12,10 @@ import { authHttpInterceptorFn, provideAuth0 } from '@auth0/auth0-angular';
 import { env } from '../env/env';
 import { RouterOutlet } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
-import { EmissionFactorState } from './store/state/emission-table.state';
+import { EmissionFactorState } from './emission-factor/state/emission-table.state';
+import { CompanyState } from './company/state/company.state';
+import { EmployeesState } from './management/state/employees.state';
+import { TeamsState } from './management/state/teams.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,9 +25,12 @@ import { EmissionFactorState } from './store/state/emission-table.state';
     BrowserAnimationsModule,
     ShellModule,
     RouterOutlet,
-    NgxsModule.forRoot([EmissionFactorState], {
-      developmentMode: false,
-    }),
+    NgxsModule.forRoot(
+      [EmissionFactorState, CompanyState, EmployeesState, TeamsState],
+      {
+        developmentMode: false,
+      },
+    ),
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),

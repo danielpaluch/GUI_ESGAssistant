@@ -7,6 +7,7 @@ import { CompanyInfoComponent } from './components/company-info/company-info.com
 import { CurrentPlanInfoComponent } from './components/current-plan-info/current-plan-info.component';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
+import { CompanyLogoComponent } from '../esg-lib/components/company-logo/company-logo.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatIcon } from '@angular/material/icon';
     NgOptimizedImage,
     MatDivider,
     MatIcon,
+    CompanyLogoComponent,
   ],
 })
 export class ProfileModule {}

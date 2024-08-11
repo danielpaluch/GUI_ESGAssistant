@@ -7,19 +7,11 @@ import {
 import { FormArray, FormControl } from '@angular/forms';
 import { EmissionSecondStepGroup } from '../forms/emission-second-step.form';
 
-export interface EmissionList {
-  emissions: EmissionFormModel[];
-}
-
-export interface EmissionThirdStepValues {
-  emissions: EmissionFormModel[];
-}
-
 export interface EmissionThirdStepControls {
   emissions: FormArray<EmissionSecondStepGroup>;
 }
 
-export interface EmissionFormModel {
+export interface Emission {
   type: TypeConfig | null;
   category: CategoryConfig | null;
   fuel: FuelConfig | null;
@@ -36,7 +28,8 @@ export interface EmissionSecondStepControls {
 }
 
 export interface EmissionFactor {
+  id?: string;
   alias: string;
   description: string;
-  emissions: EmissionList;
+  emissions: Emission[];
 }

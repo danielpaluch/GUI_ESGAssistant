@@ -1,31 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { Employee } from '../../models/employee.model';
+import { Team } from '../../models/team.model';
+import { Store } from '@ngxs/store';
+import { FetchEmployees } from '../../actions/employees.action';
+import { Observable } from 'rxjs';
+import { EmployeesState } from '../../state/employees.state';
+import { TeamsState } from '../../state/teams.state';
+import { FetchTeams } from '../../actions/teams.actions';
 
 @Component({
   selector: 'app-management-container',
   templateUrl: './management-container.component.html',
   styleUrl: './management-container.component.scss',
 })
-export class ManagementContainerComponent {
-  users: Employees[] = [
-    { name: 'John Doe', email: 'john.doe@example.com' },
-    { name: 'Alice Smith', email: 'alice.smith@example.com' },
-    { name: 'Bob Johnson', email: 'bob.johnson@example.com' },
-    { name: 'Emily Davis', email: 'emily.davis@example.com' },
-    { name: 'Michael Wilson', email: 'michael.wilson@example.com' },
-    { name: 'Sophia Brown', email: 'sophia.brown@example.com' },
-  ];
+export class ManagementContainerComponent implements OnInit {
+  store: Store = inject(Store);
 
-  teams: Team[] = [
-    { name: 'Team A', members: [], color: '#59110c' },
-    { name: 'Team B', members: [], color: '#2c3442' },
-  ];
+  ngOnInit() {
+    this.store.dispatch(FetchEmployees);
+    this.store.dispatch(FetchTeams);
+  }
 
-  drop(event: CdkDragDrop<Employees[]>) {
+  get employees$(): Observable<Employee[] | null> {
+    return this.store.select(EmployeesState.getEmployee);
+  }
+
+  get employeesLoading$(): Observable<boolean> {
+    return this.store.select(EmployeesState.getLoading);
+  }
+
+  get teams$(): Observable<Team[] | null> {
+    return this.store.select(TeamsState.getTeams);
+  }
+
+  drop(event: CdkDragDrop<Employee[]>, teamId: string | null) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -41,15 +54,4 @@ export class ManagementContainerComponent {
       );
     }
   }
-}
-
-interface Team {
-  name: string;
-  members: Employees[];
-  color: string;
-}
-
-interface Employees {
-  name: string;
-  email: string;
 }

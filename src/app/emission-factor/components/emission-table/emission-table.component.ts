@@ -7,8 +7,9 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { EmissionFactor } from '../../models/emission-form.model';
+import { EmissionFactor } from '../../models/emission';
 import { ITableColumn } from '../../../esg-lib/components/table/table.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-emission-table',
@@ -18,9 +19,14 @@ import { ITableColumn } from '../../../esg-lib/components/table/table.component'
 export class EmissionTableComponent {
   @Input() emissionFactors: EmissionFactor[];
 
+  @Input() loading: boolean;
+
   @ViewChild('empty') empty: TemplateRef<unknown>;
 
   @Output() addEmissionEvent: EventEmitter<void> = new EventEmitter<void>();
+
+  @Output() pageChangedEvent: EventEmitter<PageEvent> =
+    new EventEmitter<PageEvent>();
 
   displayedColumns: string[] = ['alias', 'description'];
 
@@ -45,4 +51,8 @@ export class EmissionTableComponent {
   edit(emissionFactor: EmissionFactor) {}
 
   delete(emissionFactor: EmissionFactor) {}
+
+  onPageChanged(event: PageEvent) {
+    this.pageChangedEvent.emit(event);
+  }
 }

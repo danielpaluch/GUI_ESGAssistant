@@ -1,0 +1,5 @@
+@if (loadingCompany | async) {
+  <mat-spinner />
+} @else {
+  <router-outlet />
+}

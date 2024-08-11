@@ -3,14 +3,15 @@
     <div cdkDropListGroup>
       <app-drag-drop-container
         [label]="'Unassigned users'"
-        [items]="users"
-        (dropEvent)="drop($event)"
+        [items]="(employees$ | async) ?? []"
+        [loading]="(employeesLoading$ | async) ?? false"
+        (dropEvent)="drop($event, null)"
       />
-      @for (team of teams; track team) {
+      @for (team of teams$ | async; track team; let i = $index) {
         <app-drag-drop-container
           [label]="team.name"
           [items]="team.members"
-          (dropEvent)="drop($event)"
+          (dropEvent)="drop($event, team.id)"
         />
       }
     </div>

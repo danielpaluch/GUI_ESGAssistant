@@ -11,10 +11,7 @@ import {
   MatIconButton,
   MatMiniFabButton,
 } from '@angular/material/button';
-import {
-  EmissionFormModel,
-  EmissionList,
-} from '../../models/emission-form.model';
+import { Emission } from '../../models/emission';
 import { MatIcon } from '@angular/material/icon';
 import {
   ITableColumn,
@@ -40,45 +37,45 @@ import { MatTab, MatTabGroup } from '@angular/material/tabs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmissionFormTableComponent {
-  @Input() formValue: EmissionList;
+  @Input() formValue: Emission[];
 
   @Input() showDeleteColumn = false;
 
   @Output() readonly deleteRow: EventEmitter<number> =
     new EventEmitter<number>();
 
-  columns: ITableColumn<EmissionFormModel>[] = [
+  columns: ITableColumn<Emission>[] = [
     {
       name: 'type',
       header: 'Type',
-      accessor: (emission: EmissionFormModel) => emission.type?.label,
+      accessor: (emission: Emission) => emission.type?.label,
     },
     {
       name: 'category',
       header: 'Category',
-      accessor: (emission: EmissionFormModel) => emission.category?.label,
+      accessor: (emission: Emission) => emission.category?.label,
     },
     {
       name: 'fuel',
       header: 'Fuel',
-      accessor: (emission: EmissionFormModel) => emission.fuel?.label,
+      accessor: (emission: Emission) => emission.fuel?.label,
     },
     {
       name: 'amount',
       header: 'Amount',
-      accessor: (emission: EmissionFormModel) => emission.amount,
+      accessor: (emission: Emission) => emission.amount,
     },
     {
       name: 'unit',
       header: 'Unit',
-      accessor: (emission: EmissionFormModel) => emission.unit?.label,
+      accessor: (emission: Emission) => emission.unit?.label,
     },
   ];
 
   displayedColumns: string[] = ['type', 'category', 'fuel', 'amount', 'unit'];
 
-  public get dataSource(): EmissionFormModel[] {
-    return this.formValue.emissions || [];
+  public get dataSource(): Emission[] {
+    return this.formValue || [];
   }
 
   public get groupedEmissionsByKeys() {
@@ -90,10 +87,9 @@ export class EmissionFormTableComponent {
   // }
 
   public get groupedEmissions() {
-    const emissions: (EmissionFormModel | undefined)[] =
-      this.formValue.emissions || [];
+    const emissions: (Emission | undefined)[] = this.formValue || [];
 
-    const groups: Record<string, EmissionFormModel[]> = {};
+    const groups: Record<string, Emission[]> = {};
 
     for (const emission of emissions) {
       if (!emission) continue;

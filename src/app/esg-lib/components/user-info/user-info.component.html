@@ -1,5 +1,5 @@
 <div class="user">
-  <span class="regular-txt-l"> TestCompany </span>
+  <span class="regular-txt-l"> {{ (company$ | async)?.name }} </span>
   <span class="bold-txt-s">
     @if (user$ | async; as user) {
       {{ user.email }}

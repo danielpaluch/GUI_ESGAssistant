@@ -4,8 +4,10 @@
   [columns]="columns"
   [emptyTableTemplate]="empty"
   [optionsEnabled]="true"
+  [loading]="loading"
   (rowEditEvent)="edit($event)"
   (rowDeleteEvent)="delete($event)"
+  (pageChangedEvent)="onPageChanged($event)"
 />
 
 <ng-template #empty>

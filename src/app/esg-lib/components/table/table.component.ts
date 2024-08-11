@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -25,6 +26,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { NgTemplateOutlet } from '@angular/common';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-table',
@@ -45,7 +47,9 @@ import { NgTemplateOutlet } from '@angular/common';
     NgTemplateOutlet,
     MatHeaderCellDef,
     MatNoDataRow,
+    MatPaginator,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
@@ -65,11 +69,17 @@ export class TableComponent<T> implements OnInit {
 
   @Input() emptyTableTemplate: TemplateRef<unknown>;
 
+  @Input() loading = false;
+
+  @Input() pagination = true;
+
   @Output() rowClickEvent = new EventEmitter<T>();
 
   @Output() rowEditEvent = new EventEmitter<T>();
 
   @Output() rowDeleteEvent = new EventEmitter<T>();
+
+  @Output() pageChangedEvent = new EventEmitter<PageEvent>();
 
   @ViewChild('optionsTemplate', { static: true })
   optionsTemplate: TemplateRef<unknown>;
@@ -108,6 +118,10 @@ export class TableComponent<T> implements OnInit {
 
   onRowDelete(row: T): void {
     this.rowDeleteEvent.emit(row);
+  }
+
+  onPageChanged(event: PageEvent) {
+    this.pageChangedEvent.emit(event);
   }
 }
 

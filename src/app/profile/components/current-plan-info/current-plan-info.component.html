@@ -3,29 +3,35 @@
     <div class="subscription-info">
       <div class="info-row">
         <div class="info-label">Version:</div>
-        <div class="info-value">{{ version }}</div>
+        <div class="info-value">{{ company.plan }}</div>
       </div>
       <mat-divider></mat-divider>
       <div class="info-row">
         <div class="info-label">Activated:</div>
         <div class="info-value">
-          <mat-icon class="material-icons color_green"
-            >check_circle_outline</mat-icon
-          >
+          @if (company.activated) {
+            <mat-icon class="material-icons color_green"
+              >check_circle_outline</mat-icon
+            >
+          } @else {
+            <mat-icon class="material-icons color_red"
+              >remove_circle_outline</mat-icon
+            >
+          }
         </div>
       </div>
       <mat-divider></mat-divider>
       <div class="info-row">
         <div class="info-label">Start date:</div>
         <div class="info-value">
-          {{ startDate | date: 'dd.MM.yyyy h:mm:ss' }}
+          {{ company.startDate | date: 'dd.MM.yyyy h:mm:ss' }}
         </div>
       </div>
       <mat-divider></mat-divider>
       <div class="info-row">
         <div class="info-label">Expiration date:</div>
         <div class="info-value">
-          {{ expirationDate | date: 'dd.MM.yyyy h:mm:ss' }}
+          {{ company.expireDate | date: 'dd.MM.yyyy h:mm:ss' }}
         </div>
       </div>
     </div>
