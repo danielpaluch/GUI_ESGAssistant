@@ -25,15 +25,15 @@ export class EmissionsFactorService extends PaginatedBaseService<EmissionFactor>
     // requestUrl.searchParams.set('page', page.toString());
     // requestUrl.searchParams.set('size', size.toString());
 
+    // return this.http.get<PaginatedData<EmissionFactor>>(requestUrl.toString()).pipe(
+    //   catchError(this.handleError)
+    // );
+
     return of({
       data: EMISSION_FACTOR_MOCKS,
       page: page,
       pageSize: size,
     }).pipe(delay(1000));
-
-    // return this.http.get<PaginatedData<EmissionFactor>>(requestUrl.toString()).pipe(
-    //   catchError(this.handleError)
-    // );
   }
 
   create(item: EmissionFactor): Observable<EmissionFactor> {

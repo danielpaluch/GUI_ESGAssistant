@@ -4,8 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '@auth0/auth0-angular';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { Store } from '@ngxs/store';
-import { Company, CompanyState } from '../../../company/state/company.state';
+import { CompanyState } from '../../../company/state/company.state';
 import { Observable } from 'rxjs';
+import { Company } from '../../../company/models/company.model';
 
 @Component({
   selector: 'app-user-info',

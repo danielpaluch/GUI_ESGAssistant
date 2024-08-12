@@ -6,7 +6,7 @@ export abstract class PreService<T> {
 
   abstract read(id: string): Observable<T | null>;
 
-  abstract update(id: string, item: T): Observable<T | null>;
+  abstract update(id: string, item: Partial<T>): Observable<T | null>;
 
   abstract delete(id: string): Observable<void | null>;
 

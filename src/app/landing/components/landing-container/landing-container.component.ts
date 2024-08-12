@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-landing-container',
@@ -12,5 +13,16 @@ export class LandingContainerComponent {
     [Validators.required],
   );
 
-  addCompany() {}
+  store: Store = inject(Store);
+
+  addCompany() {
+    // const companyName: string | null= this.companyControl.value
+    // if(companyName){
+    //   const companyCreateData: CompanyCreateData = {
+    //     name: companyName,
+    //   }
+    //   this.store.dispatch(new CompanyActions.CreateCompany(companyCreateData))
+    //
+    // }
+  }
 }

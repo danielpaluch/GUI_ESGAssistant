@@ -4,13 +4,10 @@ import { EmissionFactor } from '../../models/emission';
 import { DialogAddEmissionFactorComponent } from '../../components/dialog-add-emission-factor/dialog-add-emission-factor.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngxs/store';
-import {
-  AddEmissionFactor,
-  FetchEmissionFactors,
-} from '../../actions/emission-table.action';
 import { Observable } from 'rxjs';
 import { EmissionFactorState } from '../../state/emission-table.state';
 import { PageEvent } from '@angular/material/paginator';
+import { EmissionFactorActions } from '../../actions/emission-table.action';
 
 @Component({
   selector: 'app-emission-factor-main',
@@ -34,7 +31,7 @@ export class EmissionFactorMainComponent {
 
   onPageChangedEvent(event: PageEvent) {
     this.store.dispatch(
-      new FetchEmissionFactors({
+      new EmissionFactorActions.FetchEmissionFactors({
         page: event.pageIndex,
         pageSize: event.pageSize,
       }),
@@ -49,7 +46,9 @@ export class EmissionFactorMainComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((data: EmissionFactor | undefined | null) => {
         if (data) {
-          this.store.dispatch(new AddEmissionFactor(data));
+          this.store.dispatch(
+            new EmissionFactorActions.AddEmissionFactor(data),
+          );
         }
       });
   }

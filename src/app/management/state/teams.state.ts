@@ -12,7 +12,8 @@ import {
 @State<TeamsStateModel>({
   name: 'TEAMS',
   defaults: {
-    data: [],
+    entities: [],
+    selectedEntity: null,
     loading: false,
     error: null,
   },
@@ -22,7 +23,7 @@ export class TeamsState extends BaseState<Team> {
 
   @Selector()
   static getTeams(state: TeamsStateModel): Team[] | null {
-    return state.data;
+    return state.entities;
   }
 
   @Selector()

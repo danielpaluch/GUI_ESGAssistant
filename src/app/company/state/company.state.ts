@@ -1,26 +1,15 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { FetchCompany } from '../actions/company.action';
-import { BaseState, BaseStateModel } from '../../shell/state/base.state';
+import { BaseState } from '../../shell/state/base.state';
 import { inject } from '@angular/core';
 import { CompanyService } from '../services/company.service';
-
-export interface Company {
-  id: string;
-  name: string;
-  activated: boolean;
-  plan: string;
-  startDate: Date;
-  expireDate: Date;
-  description: string;
-  logo: null | string;
-}
-
-export interface CompanyStateModel extends BaseStateModel<Company> {}
+import { Company, CompanyStateModel } from '../models/company.model';
+import { CompanyActions } from '../actions/company.action';
 
 @State<CompanyStateModel>({
   name: 'COMPANY',
   defaults: {
-    data: [],
+    entities: [],
+    selectedEntity: null,
     loading: false,
     error: null,
   },
@@ -35,18 +24,20 @@ export class CompanyState extends BaseState<Company> {
 
   @Selector()
   static getCompanies(state: CompanyStateModel): Company[] | null {
-    return state.data;
+    return state.entities;
   }
 
   @Selector()
   static getFirstCompany(state: CompanyStateModel): Company | null {
-    return state.data && state.data.length > 0 ? state.data[0] : null;
+    return state.entities && state.entities.length > 0
+      ? state.entities[0]
+      : null;
   }
 
   @Selector()
   static getCompanyLogo(state: CompanyStateModel): string | null {
     const firstCompany =
-      state.data && state.data.length > 0 ? state.data[0] : null;
+      state.entities && state.entities.length > 0 ? state.entities[0] : null;
     return firstCompany ? firstCompany.logo : null;
   }
 
@@ -55,8 +46,32 @@ export class CompanyState extends BaseState<Company> {
     return state.loading;
   }
 
-  @Action(FetchCompany)
+  @Action(CompanyActions.FetchCompany)
   fetchCompany(ctx: StateContext<CompanyStateModel>) {
     return this.getAll(ctx);
+  }
+
+  @Action(CompanyActions.UpdateCompany)
+  updateCompany(
+    ctx: StateContext<CompanyStateModel>,
+    { payload }: CompanyActions.UpdateCompany,
+  ) {
+    return this.updateEntity(ctx, payload);
+  }
+
+  @Action(CompanyActions.DeleteCompany)
+  deleteCompany(
+    ctx: StateContext<CompanyStateModel>,
+    { payload }: CompanyActions.DeleteCompany,
+  ) {
+    return this.deleteEntity(ctx, payload);
+  }
+
+  @Action(CompanyActions.CreateCompany)
+  createCompany(
+    ctx: StateContext<CompanyStateModel>,
+    { payload }: CompanyActions.CreateCompany,
+  ) {
+    return this.createEntity(ctx, payload);
   }
 }

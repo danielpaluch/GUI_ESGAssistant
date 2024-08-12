@@ -1,13 +1,25 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { Company } from '../models/company.model';
+export namespace CompanyActions {
+  export class FetchCompany {
+    static readonly type = '[Company] Fetch company';
+  }
 
-export class FetchCompany {
-  static readonly type = '[Company] Fetch company';
-}
-export class FetchCompanySuccess {
-  static readonly type = '[Company] Fetch company';
-}
-export class FetchCompanyFailure {
-  static readonly type = '[Company] Fetch company';
+  export class CreateCompany {
+    static readonly type = '[Company] Create company';
 
-  constructor(public payload: { error: HttpErrorResponse }) {}
+    //TODO
+    // constructor(public payload: CompanyCreateData ) {}
+
+    constructor(public payload: { data: Company }) {}
+  }
+
+  export class UpdateCompany {
+    static readonly type = '[Company] Update company';
+    constructor(public payload: { id: string; data: Partial<Company> }) {}
+  }
+
+  export class DeleteCompany {
+    static readonly type = '[Company] Delete company';
+    constructor(public payload: { id: string }) {}
+  }
 }

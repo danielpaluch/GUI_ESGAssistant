@@ -8,7 +8,8 @@ import { inject } from '@angular/core';
 @State<EmployeesStateModel>({
   name: 'EMPLOEES',
   defaults: {
-    data: [],
+    entities: [],
+    selectedEntity: null,
     loading: false,
     error: null,
   },
@@ -18,7 +19,7 @@ export class EmployeesState extends BaseState<Employee> {
 
   @Selector()
   static getEmployee(state: EmployeesStateModel): Employee[] | null {
-    return state.data;
+    return state.entities;
   }
 
   @Selector()

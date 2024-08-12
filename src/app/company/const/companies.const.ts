@@ -1,4 +1,4 @@
-import { Company } from '../state/company.state';
+import { Company } from '../models/company.model';
 
 export const COMPANY_MOCK: Company = {
   id: '10',
