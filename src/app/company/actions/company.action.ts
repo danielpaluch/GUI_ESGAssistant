@@ -1,25 +1,47 @@
-import { Company } from '../models/company.model';
-export namespace CompanyActions {
-  export class FetchCompany {
-    static readonly type = '[Company] Fetch company';
-  }
+import { Company, CompanyCreateData } from '../models/company.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
-  export class CreateCompany {
-    static readonly type = '[Company] Create company';
+const COMPANY_ACTIONS = '[Company]';
 
-    //TODO
-    // constructor(public payload: CompanyCreateData ) {}
+export class CompanyActionGet {
+  static readonly type = `${COMPANY_ACTIONS} Get`;
+}
+export class CompanyActionGetSuccess {
+  static readonly type = `${COMPANY_ACTIONS} Get Success`;
+  constructor(public payload: Company) {}
+}
 
-    constructor(public payload: { data: Company }) {}
-  }
+export class CompanyActionGetFailure {
+  static readonly type = `${COMPANY_ACTIONS} Get Failure`;
+  constructor(public payload: { error: HttpErrorResponse }) {}
+}
 
-  export class UpdateCompany {
-    static readonly type = '[Company] Update company';
-    constructor(public payload: { id: string; data: Partial<Company> }) {}
-  }
+export class CompanyActionCreate {
+  static readonly type = `${COMPANY_ACTIONS} Create`;
+  constructor(public payload: CompanyCreateData) {}
+}
 
-  export class DeleteCompany {
-    static readonly type = '[Company] Delete company';
-    constructor(public payload: { id: string }) {}
-  }
+export class CompanyActionCreateSuccess {
+  static readonly type = `${COMPANY_ACTIONS} Create success`;
+  constructor(public payload: Company) {}
+}
+
+export class CompanyActionCreateFailure {
+  static readonly type = `${COMPANY_ACTIONS} Create failure`;
+  constructor(public payload: { error: unknown }) {}
+}
+
+export class CompanyActionUpdate {
+  static readonly type = `${COMPANY_ACTIONS} Update`;
+  constructor(public payload: { id: string; item: Partial<Company> }) {}
+}
+
+export class CompanyActionUpdateSuccess {
+  static readonly type = `${COMPANY_ACTIONS} Update success`;
+  constructor(public payload: Company) {}
+}
+
+export class CompanyActionUpdateFailure {
+  static readonly type = `${COMPANY_ACTIONS} Update failure`;
+  constructor(public payload: { error: unknown }) {}
 }

@@ -28,6 +28,12 @@ export class EmissionTableComponent {
   @Output() pageChangedEvent: EventEmitter<PageEvent> =
     new EventEmitter<PageEvent>();
 
+  @Output() deleteEvent: EventEmitter<EmissionFactor> =
+    new EventEmitter<EmissionFactor>();
+
+  @Output() editEvent: EventEmitter<EmissionFactor> =
+    new EventEmitter<EmissionFactor>();
+
   displayedColumns: string[] = ['alias', 'description'];
 
   columns: ITableColumn<EmissionFactor>[] = [
@@ -48,9 +54,13 @@ export class EmissionTableComponent {
     this.addEmissionEvent.emit();
   }
 
-  edit(emissionFactor: EmissionFactor) {}
+  edit(emissionFactor: EmissionFactor) {
+    this.editEvent.emit(emissionFactor);
+  }
 
-  delete(emissionFactor: EmissionFactor) {}
+  delete(emissionFactor: EmissionFactor) {
+    this.deleteEvent.emit(emissionFactor);
+  }
 
   onPageChanged(event: PageEvent) {
     this.pageChangedEvent.emit(event);

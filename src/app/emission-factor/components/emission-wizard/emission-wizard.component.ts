@@ -34,6 +34,8 @@ import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 export class EmissionWizardComponent {
   @Input() steps: EmissionStepper;
 
+  @Input() loading: boolean;
+
   @Output() readonly submitEvent = new EventEmitter<void>();
 
   @ViewChild('stepper') stepper: MatStepper;

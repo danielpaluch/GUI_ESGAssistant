@@ -6,6 +6,7 @@ import {
 } from './emission.model';
 import { FormArray, FormControl } from '@angular/forms';
 import { EmissionSecondStepGroup } from '../forms/emission-second-step.form';
+import { PaginatedBaseStateModel } from '../../shell/models/paginated-service.model';
 
 export interface EmissionThirdStepControls {
   emissions: FormArray<EmissionSecondStepGroup>;
@@ -27,9 +28,15 @@ export interface EmissionSecondStepControls {
   unit: FormControl<UnitConfig | null>;
 }
 
-export interface EmissionFactor {
-  id?: string;
+export interface EmissionFactor extends EmissionFactorCreateData {
+  id: string;
+}
+
+export interface EmissionFactorCreateData {
   alias: string;
   description: string;
   emissions: Emission[];
 }
+
+export interface EmissionFactorPaginatedStateModel
+  extends PaginatedBaseStateModel<EmissionFactor> {}

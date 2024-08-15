@@ -1,13 +1,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { Employee } from '../models/employee.model';
 
-export class FetchEmployees {
-  static readonly type = '[Employee] Fetch employees';
+const EMPLOYEE_ACTIONS = '[Employee]';
+
+export class EmployeeActionGetAll {
+  static readonly type = `${EMPLOYEE_ACTIONS} Get All`;
 }
-export class FetchEmployeesSuccess {
-  static readonly type = '[Company] Fetch employees success!';
+export class EmployeeActionGetAllSuccess {
+  static readonly type = `${EMPLOYEE_ACTIONS} Get All Success`;
+  constructor(public payload: Employee[]) {}
 }
-export class FetchEmployeesFailure {
-  static readonly type = '[Company] Fetch employees failure!';
+export class EmployeeActionGetAllFailure {
+  static readonly type = `${EMPLOYEE_ACTIONS} Get All Failure`;
 
   constructor(public payload: { error: HttpErrorResponse }) {}
 }

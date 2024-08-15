@@ -2,13 +2,7 @@ import { StateContext } from '@ngxs/store';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { BaseService } from '../services/base.service';
 import { HttpErrorResponse } from '@angular/common/http';
-
-export interface BaseStateModel<T> {
-  entities: T[];
-  selectedEntity: T | null;
-  loading: boolean;
-  error: HttpErrorResponse | null;
-}
+import { BaseStateModel } from '../models/base-service.model';
 
 export abstract class BaseState<T extends { id: string }> {
   protected abstract httpService: BaseService<T>;

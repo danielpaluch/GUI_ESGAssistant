@@ -12,8 +12,10 @@
   <app-emission-table
     content
     [emissionFactors]="(emissionFactors$ | async) ?? []"
-    [loading]="!!(loadingEmissionFactors$ | async)"
+    [loading]="(loadingEmissionFactors$ | async) ?? false"
     (addEmissionEvent)="addEmissionFactor()"
     (pageChangedEvent)="onPageChangedEvent($event)"
+    (deleteEvent)="onDeleteEvent($event)"
+    (editEvent)="onEditEvent($event)"
   />
 </app-card>

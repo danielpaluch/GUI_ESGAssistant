@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EmissionFactor } from '../models/emission';
+import { EmissionFactor, EmissionFactorCreateData } from '../models/emission';
 import { env } from '../../../env/env';
 import { HttpClient } from '@angular/common/http';
 import { catchError, delay, Observable, of } from 'rxjs';
@@ -10,7 +10,7 @@ import { PaginatedData } from '../../shell/models/paginated-service.model';
 @Injectable({
   providedIn: 'root',
 })
-export class EmissionsFactorService extends PaginatedBaseService<EmissionFactor> {
+export class EmissionFactorService extends PaginatedBaseService<EmissionFactor> {
   private apiUrl = env.URL + '/api/emission-factors';
   constructor(private http: HttpClient) {
     super();
@@ -36,9 +36,11 @@ export class EmissionsFactorService extends PaginatedBaseService<EmissionFactor>
     }).pipe(delay(1000));
   }
 
-  create(item: EmissionFactor): Observable<EmissionFactor> {
-    console.log(item);
-    return of(item).pipe(delay(1000));
+  create(item: EmissionFactorCreateData): Observable<EmissionFactor> {
+    return of({
+      ...item,
+      id: '1',
+    }).pipe(delay(1000));
 
     // return this.http.post<EmissionFactor>(this.apiUrl, item).pipe(
     //   catchError(this.handleError)
@@ -51,15 +53,17 @@ export class EmissionsFactorService extends PaginatedBaseService<EmissionFactor>
       .pipe(catchError(this.handleError));
   }
 
-  update(id: string, item: EmissionFactor): Observable<EmissionFactor | null> {
-    return this.http
-      .put<EmissionFactor>(`${this.apiUrl}/${id}`, item)
-      .pipe(catchError(this.handleError));
+  update(
+    id: string,
+    item: Partial<EmissionFactor>,
+  ): Observable<EmissionFactor> {
+    return this.http.put<EmissionFactor>(`${this.apiUrl}/${id}`, item);
   }
 
-  delete(id: string): Observable<void | null> {
-    return this.http
-      .delete<void>(`${this.apiUrl}/${id}`)
-      .pipe(catchError(this.handleError));
+  delete(id: string): Observable<void> {
+    return of(undefined).pipe(delay(1000)); // Simulate async operation
+    //
+    // return this.http
+    //   .delete<void>(`${this.apiUrl}/${id}`)
   }
 }

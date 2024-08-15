@@ -1,4 +1,4 @@
-import { BaseStateModel } from '../../shell/state/base.state';
+import { BaseStateModel } from '../../shell/models/base-service.model';
 
 export interface Employee {
   id: string;

@@ -4,9 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '@auth0/auth0-angular';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { Store } from '@ngxs/store';
-import { CompanyState } from '../../../company/state/company.state';
 import { Observable } from 'rxjs';
 import { Company } from '../../../company/models/company.model';
+import { CompanySelector } from '../../../company/selectors/company.selector';
 
 @Component({
   selector: 'app-user-info',
@@ -21,7 +21,7 @@ export class UserInfoComponent {
   store = inject(Store);
 
   get company$(): Observable<Company | null> {
-    return this.store.select(CompanyState.getFirstCompany);
+    return this.store.select(CompanySelector.getFirstCompany);
   }
   get user$() {
     return this.authUser.user$;

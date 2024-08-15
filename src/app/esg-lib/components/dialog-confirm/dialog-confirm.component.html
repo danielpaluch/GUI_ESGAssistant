@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content class="mat-typography">
+  {{ contentTitle }}
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" mat-button mat-dialog-close>Cancel</button>
+  <button
+    type="button"
+    mat-button
+    color="accent"
+    cdkFocusInitial
+    (click)="onConfirm()"
+    [disabled]="loading"
+  >
+    {{ confirmButtonLabel }}
+  </button>
+</mat-dialog-actions>

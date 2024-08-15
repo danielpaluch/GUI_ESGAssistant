@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { CompanyState } from '../../../company/state/company.state';
+import { CompanySelector } from '../../../company/selectors/company.selector';
 
 @Component({
   selector: 'app-shell-container',
@@ -12,6 +12,6 @@ export class ShellContainerComponent {
   constructor(private readonly store: Store) {}
 
   get loadingCompany(): Observable<boolean> {
-    return this.store.select(CompanyState.getCompanyLoading);
+    return this.store.select(CompanySelector.getCompanyLoading);
   }
 }

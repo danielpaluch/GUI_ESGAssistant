@@ -29,21 +29,15 @@ export class TeamService extends BaseService<Team> {
     // );
   }
 
-  read(id: string): Observable<Team | null> {
-    return this.http
-      .get<Team>(`${this.apiUrl}/${id}`)
-      .pipe(catchError(this.handleError));
+  read(id: string): Observable<Team> {
+    return this.http.get<Team>(`${this.apiUrl}/${id}`);
   }
 
-  update(id: string, item: Team): Observable<Team | null> {
-    return this.http
-      .put<Team>(`${this.apiUrl}/${id}`, item)
-      .pipe(catchError(this.handleError));
+  update(id: string, item: Partial<Team>): Observable<Team> {
+    return this.http.put<Team>(`${this.apiUrl}/${id}`, item);
   }
 
-  delete(id: string): Observable<void | null> {
-    return this.http
-      .delete<void>(`${this.apiUrl}/${id}`)
-      .pipe(catchError(this.handleError));
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

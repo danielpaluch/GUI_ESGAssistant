@@ -1,13 +1,14 @@
-import { Component, DestroyRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EmissionFactor } from '../../models/emission';
 import { DialogAddEmissionFactorComponent } from '../../components/dialog-add-emission-factor/dialog-add-emission-factor.component';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { EmissionFactorState } from '../../state/emission-table.state';
 import { PageEvent } from '@angular/material/paginator';
-import { EmissionFactorActions } from '../../actions/emission-table.action';
+import { EmissionFactorTableStateSelectors } from '../../selectors/emission-factor-table.selector';
+import { DialogConfirmDeleteEmissionFactorComponent } from '../../components/dialog-confirm-delete-emission-factor/dialog-confirm-delete-emission-factor.component';
+import { DialogEditEmissionFactorComponent } from '../../components/dialog-edit-emission-factor/dialog-edit-emission-factor.component';
+import { EmissionFactorTableActionGetAll } from '../../actions/emission-table.action';
 
 @Component({
   selector: 'app-emission-factor-main',
@@ -17,39 +18,41 @@ import { EmissionFactorActions } from '../../actions/emission-table.action';
 export class EmissionFactorMainComponent {
   constructor(
     private readonly dialog: MatDialog,
-    private readonly destroyRef: DestroyRef,
     private readonly store: Store,
   ) {}
 
-  get emissionFactors$(): Observable<EmissionFactor[] | null> {
-    return this.store.select(EmissionFactorState.getEmissionFactors);
+  public get emissionFactors$(): Observable<EmissionFactor[] | null> {
+    return this.store.select(
+      EmissionFactorTableStateSelectors.getEmissionFactors,
+    );
   }
 
-  get loadingEmissionFactors$(): Observable<boolean> {
-    return this.store.select(EmissionFactorState.isLoading);
+  public get loadingEmissionFactors$(): Observable<boolean> {
+    return this.store.select(EmissionFactorTableStateSelectors.isLoading);
   }
 
-  onPageChangedEvent(event: PageEvent) {
+  public onPageChangedEvent(event: PageEvent) {
     this.store.dispatch(
-      new EmissionFactorActions.FetchEmissionFactors({
+      new EmissionFactorTableActionGetAll({
         page: event.pageIndex,
         pageSize: event.pageSize,
       }),
     );
   }
 
-  public addEmissionFactor(): void {
-    const dialogRef = this.dialog.open(DialogAddEmissionFactorComponent);
+  public onDeleteEvent(emissionFactor: EmissionFactor) {
+    this.dialog.open(DialogConfirmDeleteEmissionFactorComponent, {
+      data: { emissionFactor: emissionFactor },
+    });
+  }
 
-    dialogRef
-      .afterClosed()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((data: EmissionFactor | undefined | null) => {
-        if (data) {
-          this.store.dispatch(
-            new EmissionFactorActions.AddEmissionFactor(data),
-          );
-        }
-      });
+  public onEditEvent(emissionFactor: EmissionFactor) {
+    this.dialog.open(DialogEditEmissionFactorComponent, {
+      data: { emissionFactor: emissionFactor },
+    });
+  }
+
+  public addEmissionFactor(): void {
+    this.dialog.open(DialogAddEmissionFactorComponent);
   }
 }

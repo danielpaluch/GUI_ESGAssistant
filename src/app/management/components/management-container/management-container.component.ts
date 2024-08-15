@@ -7,11 +7,11 @@ import {
 import { Employee } from '../../models/employee.model';
 import { Team } from '../../models/team.model';
 import { Store } from '@ngxs/store';
-import { FetchEmployees } from '../../actions/employees.action';
 import { Observable } from 'rxjs';
-import { EmployeesState } from '../../state/employees.state';
-import { TeamsState } from '../../state/teams.state';
-import { FetchTeams } from '../../actions/teams.actions';
+import { EmployeeActionGetAll } from '../../actions/employees.action';
+import { TeamActionGetAll } from '../../actions/team.actions';
+import { EmployeeStateSelectors } from '../../selectors/employee.selector';
+import { TeamStateSelectors } from '../../selectors/team.selector';
 
 @Component({
   selector: 'app-management-container',
@@ -22,20 +22,20 @@ export class ManagementContainerComponent implements OnInit {
   store: Store = inject(Store);
 
   ngOnInit() {
-    this.store.dispatch(FetchEmployees);
-    this.store.dispatch(FetchTeams);
+    this.store.dispatch(new EmployeeActionGetAll());
+    this.store.dispatch(new TeamActionGetAll());
   }
 
   get employees$(): Observable<Employee[] | null> {
-    return this.store.select(EmployeesState.getEmployee);
+    return this.store.select(EmployeeStateSelectors.getEmployee);
   }
 
   get employeesLoading$(): Observable<boolean> {
-    return this.store.select(EmployeesState.getLoading);
+    return this.store.select(EmployeeStateSelectors.getLoading);
   }
 
   get teams$(): Observable<Team[] | null> {
-    return this.store.select(TeamsState.getTeams);
+    return this.store.select(TeamStateSelectors.getTeams);
   }
 
   drop(event: CdkDragDrop<Employee[]>, teamId: string | null) {

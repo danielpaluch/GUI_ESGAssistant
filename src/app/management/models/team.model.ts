@@ -1,5 +1,5 @@
 import { Employee } from './employee.model';
-import { BaseStateModel } from '../../shell/state/base.state';
+import { BaseStateModel } from '../../shell/models/base-service.model';
 
 export interface Team {
   id: string;

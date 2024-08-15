@@ -12,10 +12,10 @@ import { authHttpInterceptorFn, provideAuth0 } from '@auth0/auth0-angular';
 import { env } from '../env/env';
 import { RouterOutlet } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
-import { EmissionFactorState } from './emission-factor/state/emission-table.state';
 import { CompanyState } from './company/state/company.state';
 import { EmployeesState } from './management/state/employees.state';
 import { TeamsState } from './management/state/teams.state';
+import { EmissionFactorTableState } from './emission-factor/state/emission-factors-table.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +26,7 @@ import { TeamsState } from './management/state/teams.state';
     ShellModule,
     RouterOutlet,
     NgxsModule.forRoot(
-      [EmissionFactorState, CompanyState, EmployeesState, TeamsState],
+      [EmissionFactorTableState, CompanyState, EmployeesState, TeamsState],
       {
         developmentMode: false,
       },

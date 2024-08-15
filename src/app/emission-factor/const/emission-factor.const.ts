@@ -12,7 +12,7 @@ export const EMISSION_FACTOR_MOCK_B: EmissionFactor = {
   description: 'Description asda',
   emissions: [],
 };
-export const EMISSION_FACTOR_MOCKS = [
+export const EMISSION_FACTOR_MOCKS: EmissionFactor[] = [
   EMISSION_FACTOR_MOCK_A,
   EMISSION_FACTOR_MOCK_B,
 ];

@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { EmissionStepper } from '../../../esg-lib/models/wizard.model';
+import { Component, DestroyRef } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
@@ -12,11 +6,21 @@ import { FormFirstStepComponent } from '../form-first-step/form-first-step.compo
 import { TextFormFieldComponent } from '../../../esg-lib/components/text-form-field/text-form-field.component';
 import { FormSecondStepComponent } from '../form-second-step/form-second-step.component';
 import { EmissionWizardComponent } from '../emission-wizard/emission-wizard.component';
-import { EmissionFactor } from '../../models/emission';
+import { EmissionFactorCreateData } from '../../models/emission';
 import { FormThirdStepComponent } from '../form-third-step/form-third-step.component';
 import { EmissionFirstStepGroup } from '../../forms/emission-first-step.form';
 import { EmissionSecondStepGroup } from '../../forms/emission-second-step.form';
 import { EmissionThirdStepGroup } from '../../forms/emission-third-step.form';
+import { Actions, ofActionDispatched, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AsyncPipe } from '@angular/common';
+import { EmissionFactorTableStateSelectors } from '../../selectors/emission-factor-table.selector';
+import { DialogEmissionFactorComponent } from '../dialog-emission-factor/dialog-emission-factor.component';
+import {
+  EmissionFactorTableActionCreate,
+  EmissionFactorTableActionCreateSuccess,
+} from '../../actions/emission-table.action';
 
 @Component({
   standalone: true,
@@ -28,22 +32,13 @@ import { EmissionThirdStepGroup } from '../../forms/emission-third-step.form';
     FormFirstStepComponent,
     FormSecondStepComponent,
     FormThirdStepComponent,
+    AsyncPipe,
+    DialogEmissionFactorComponent,
   ],
   templateUrl: './dialog-add-emission-factor.component.html',
   styleUrl: './dialog-add-emission-factor.component.scss',
 })
-export class DialogAddEmissionFactorComponent implements AfterViewInit {
-  @ViewChild('firstStep')
-  firstStepTemplate: TemplateRef<HTMLElement>;
-
-  @ViewChild('secondStep')
-  secondStepTemplate: TemplateRef<HTMLElement>;
-
-  @ViewChild('thirdStep')
-  thirdStepTemplate: TemplateRef<HTMLElement>;
-
-  steps: EmissionStepper;
-
+export class DialogAddEmissionFactorComponent {
   firstStepForm: EmissionFirstStepGroup = new EmissionFirstStepGroup();
 
   secondStepForm: EmissionSecondStepGroup = new EmissionSecondStepGroup();
@@ -52,38 +47,31 @@ export class DialogAddEmissionFactorComponent implements AfterViewInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogAddEmissionFactorComponent>,
+    private actions: Actions,
+    private destroyRef: DestroyRef,
+    private store: Store,
   ) {}
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.steps = {
-        description: {
-          label: 'Fill description',
-          template: this.firstStepTemplate,
-          formGroup: this.firstStepForm,
-        },
-        formula: {
-          label: 'Formula',
-          template: this.secondStepTemplate,
-          formGroup: this.thirdStepForm,
-        },
-        summary: {
-          label: 'Summary',
-          template: this.thirdStepTemplate,
-          formGroup: this.thirdStepForm,
-        },
-      };
-    });
+  get loading$(): Observable<boolean> {
+    return this.store.select(EmissionFactorTableStateSelectors.isLoading);
   }
 
   public onSave(): void {
     const { alias, description } = this.firstStepForm.value;
 
-    const emissionFactor: EmissionFactor = {
+    const emissionFactor: EmissionFactorCreateData = {
       alias: alias ?? '',
       description: description ?? '',
       emissions: this.thirdStepForm.emissionsThirdStepValues,
     };
-    this.dialogRef.close(emissionFactor);
+
+    this.store.dispatch(new EmissionFactorTableActionCreate(emissionFactor));
+
+    this.actions
+      .pipe(
+        ofActionDispatched(EmissionFactorTableActionCreateSuccess),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(() => this.dialogRef.close());
   }
 }

@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { CompanyState } from '../../../company/state/company.state';
 import { Company } from '../../../company/models/company.model';
+import { CompanySelector } from '../../../company/selectors/company.selector';
 
 @Component({
   selector: 'app-profile-container',
@@ -13,6 +13,6 @@ export class ProfileContainerComponent {
   public store: Store = inject(Store);
 
   get company$(): Observable<Company | null> {
-    return this.store.select(CompanyState.getFirstCompany);
+    return this.store.select(CompanySelector.getFirstCompany);
   }
 }

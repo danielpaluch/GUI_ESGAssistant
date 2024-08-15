@@ -24,6 +24,10 @@ import {
 } from '@angular/material/table';
 import { MatIcon } from '@angular/material/icon';
 import { TableComponent } from '../esg-lib/components/table/table.component';
+import { EmissionWizardComponent } from './components/emission-wizard/emission-wizard.component';
+import { FormFirstStepComponent } from './components/form-first-step/form-first-step.component';
+import { FormSecondStepComponent } from './components/form-second-step/form-second-step.component';
+import { FormThirdStepComponent } from './components/form-third-step/form-third-step.component';
 
 const MATERIAL_MODULES = [
   MatCardModule,
@@ -31,6 +35,18 @@ const MATERIAL_MODULES = [
   MatListModule,
   MatAccordion,
   MatExpansionModule,
+  MatStepperPrevious,
+  MatTable,
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatIcon,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatRow,
+  MatHeaderRowDef,
+  MatRowDef,
 ];
 
 @NgModule({
@@ -41,19 +57,11 @@ const MATERIAL_MODULES = [
     CommonModule,
     CardComponent,
     EmissionFormTableComponent,
-    MatStepperPrevious,
-    MatTable,
-    MatCell,
-    MatCellDef,
-    MatColumnDef,
-    MatHeaderCell,
-    MatIcon,
-    MatHeaderCellDef,
-    MatHeaderRow,
-    MatRow,
-    MatHeaderRowDef,
-    MatRowDef,
     TableComponent,
+    EmissionWizardComponent,
+    FormFirstStepComponent,
+    FormSecondStepComponent,
+    FormThirdStepComponent,
   ],
 })
 export class EmissionFactorModule {}
