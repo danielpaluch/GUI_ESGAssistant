@@ -1,0 +1,39 @@
+<app-card [title]="'Current plan'">
+  <div content>
+    <div class="subscription-info">
+      <div class="info-row">
+        <div class="info-label">Version:</div>
+        <div class="info-value">{{ company.plan }}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info-row">
+        <div class="info-label">Activated:</div>
+        <div class="info-value">
+          @if (company.activated) {
+            <mat-icon class="material-icons color_green"
+              >check_circle_outline</mat-icon
+            >
+          } @else {
+            <mat-icon class="material-icons color_red"
+              >remove_circle_outline</mat-icon
+            >
+          }
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info-row">
+        <div class="info-label">Start date:</div>
+        <div class="info-value">
+          {{ company.startDate | date: 'dd.MM.yyyy h:mm:ss' }}
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info-row">
+        <div class="info-label">Expiration date:</div>
+        <div class="info-value">
+          {{ company.expireDate | date: 'dd.MM.yyyy h:mm:ss' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</app-card>

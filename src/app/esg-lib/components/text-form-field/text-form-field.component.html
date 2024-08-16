@@ -1,4 +1,15 @@
 <mat-form-field>
   <mat-label>{{ label }}</mat-label>
   <input matInput [formControl]="formControl" />
+  @if (!formControl.untouched) {
+    @if (formControl.hasError('required')) {
+      <mat-error>This field is required</mat-error>
+    }
+    @if (formControl.hasError('minLength')) {
+      <mat-error>This field has too few characters</mat-error>
+    }
+    @if (formControl.hasError('maxLength')) {
+      <mat-error>This field has too many characters</mat-error>
+    }
+  }
 </mat-form-field>

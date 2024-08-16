@@ -1,16 +1,17 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { hasCompanyGuard, noCompanyGuard } from '../guards/company.guard';
-
-export enum ShellRoutesEnum {
-  COMPANY = 'company',
-  LANDING = 'landing',
-}
+import {
+  hasCompanyGuard,
+  noCompanyGuard,
+} from '../../company/guards/company.guard';
+import { ShellRoutesEnum } from '../models/shell-routes.model';
+import { ShellContainerComponent } from '../containers/shell-container/shell-container.component';
 
 export const shellRoutes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
+    component: ShellContainerComponent,
     children: [
       {
         path: '',
@@ -25,9 +26,9 @@ export const shellRoutes: Routes = [
       },
       {
         path: ShellRoutesEnum.LANDING,
-        canActivate: [noCompanyGuard],
         loadChildren: () =>
           import('../../landing/landing.module').then((m) => m.LandingModule),
+        canActivate: [noCompanyGuard],
       },
     ],
   },

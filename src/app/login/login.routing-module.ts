@@ -2,23 +2,34 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { authGuardLoginPage } from '../guards/auth.guard';
+import { CommonModule } from '@angular/common';
+import { MatFormField } from '@angular/material/form-field';
+import { MatButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [authGuardLoginPage],
   },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [authGuardLoginPage],
   },
 ];
 
+const MATERIAL_MODULES = [
+  CommonModule,
+  MatFormField,
+  MatButton,
+  MatInput,
+  MatCheckbox,
+];
+
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  declarations: [RegisterComponent, LoginComponent],
+  imports: [RouterModule.forChild(routes), MATERIAL_MODULES],
   exports: [RouterModule],
 })
 export class LoginRoutingModule {}

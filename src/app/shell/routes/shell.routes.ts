@@ -1,4 +1,4 @@
-import { ShellRoutesEnum } from '../const/shell-routes.const';
+import { ShellRoutesEnum } from '../models/shell-routes.model';
 
 export class ShellRoutes {
   static getBaseRoute(): string[] {

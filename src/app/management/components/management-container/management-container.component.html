@@ -1,1 +1,19 @@
-<p>management-container works!</p>
+<app-card [title]="'Management'">
+  <div content>
+    <div cdkDropListGroup>
+      <app-drag-drop-container
+        [label]="'Unassigned users'"
+        [items]="(employees$ | async) ?? []"
+        [loading]="(employeesLoading$ | async) ?? false"
+        (dropEvent)="drop($event, null)"
+      />
+      @for (team of teams$ | async; track team; let i = $index) {
+        <app-drag-drop-container
+          [label]="team.name"
+          [items]="team.members"
+          (dropEvent)="drop($event, team.id)"
+        />
+      }
+    </div>
+  </div>
+</app-card>

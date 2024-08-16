@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { MaterialModule } from 'src/app/material.module';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, MaterialModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
@@ -12,11 +11,13 @@ import {
   MatIconButton,
   MatMiniFabButton,
 } from '@angular/material/button';
-import {
-  EmissionFormModel,
-  EmissionList,
-} from '../../models/emission-form.model';
+import { Emission } from '../../models/emission';
 import { MatIcon } from '@angular/material/icon';
+import {
+  ITableColumn,
+  TableComponent,
+} from '../../../esg-lib/components/table/table.component';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-emission-form-table',
@@ -27,42 +28,68 @@ import { MatIcon } from '@angular/material/icon';
     MatIcon,
     MatMiniFabButton,
     MatIconButton,
+    TableComponent,
+    MatTabGroup,
+    MatTab,
   ],
   templateUrl: './emission-form-table.component.html',
   styleUrl: './emission-form-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmissionFormTableComponent implements OnInit {
-  @Input() formValue: Partial<EmissionList>;
+export class EmissionFormTableComponent {
+  @Input() formValue: Emission[];
 
   @Input() showDeleteColumn = false;
 
   @Output() readonly deleteRow: EventEmitter<number> =
     new EventEmitter<number>();
 
+  columns: ITableColumn<Emission>[] = [
+    {
+      name: 'type',
+      header: 'Type',
+      accessor: (emission: Emission) => emission.type?.label,
+    },
+    {
+      name: 'category',
+      header: 'Category',
+      accessor: (emission: Emission) => emission.category?.label,
+    },
+    {
+      name: 'fuel',
+      header: 'Fuel',
+      accessor: (emission: Emission) => emission.fuel?.label,
+    },
+    {
+      name: 'amount',
+      header: 'Amount',
+      accessor: (emission: Emission) => emission.amount,
+    },
+    {
+      name: 'unit',
+      header: 'Unit',
+      accessor: (emission: Emission) => emission.unit?.label,
+    },
+  ];
+
   displayedColumns: string[] = ['type', 'category', 'fuel', 'amount', 'unit'];
 
-  ngOnInit() {
-    if (this.showDeleteColumn) this.displayedColumns.push('delete');
-  }
-
-  public get dataSource() {
-    return this.formValue.emissions || [];
+  public get dataSource(): Emission[] {
+    return this.formValue || [];
   }
 
   public get groupedEmissionsByKeys() {
     return Object.keys(this.groupedEmissions);
   }
 
-  public remove(index: number) {
-    this.deleteRow.emit(index);
-  }
+  // public remove(index: number) {
+  //   this.deleteRow.emit(index);
+  // }
 
   public get groupedEmissions() {
-    const emissions: (Partial<EmissionFormModel> | undefined)[] =
-      this.formValue.emissions || [];
+    const emissions: (Emission | undefined)[] = this.formValue || [];
 
-    const groups: Record<string, Partial<EmissionFormModel>[]> = {};
+    const groups: Record<string, Emission[]> = {};
 
     for (const emission of emissions) {
       if (!emission) continue;

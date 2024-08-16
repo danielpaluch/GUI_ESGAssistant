@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { HeaderComponent } from '../../../shell/components/header/header.component';
-import { NavComponent } from '../../../shell/components/nav/nav.component';
+import { HeaderComponent } from '../../../esg-lib/components/header/header.component';
+import { NavComponent } from '../../../esg-lib/components/nav/nav.component';
 import { Router, RouterOutlet } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 
@@ -50,6 +50,11 @@ export const navigationConfig: NavigationConfig[] = [
     route: 'management',
     icon: 'supervisor_account',
     title: 'Management',
+  },
+  {
+    route: 'profile',
+    icon: 'account_circle',
+    title: 'Business Profile',
   },
   {
     route: 'settings',

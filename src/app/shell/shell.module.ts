@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
-import { TemplateComponent } from './containers/template/template.component';
-import { MaterialModule } from '../material.module';
 import { RouterOutlet } from '@angular/router';
-import { NavComponent } from './components/nav/nav.component';
-import { HeaderComponent } from './components/header/header.component';
+import { NavComponent } from '../esg-lib/components/nav/nav.component';
+import { HeaderComponent } from '../esg-lib/components/header/header.component';
 import { AsyncPipe } from '@angular/common';
 import { ShellRoutingModule } from './shell-routing.module';
-
-const MATERIAL_MODULES = [MaterialModule];
+import { ShellContainerComponent } from './containers/shell-container/shell-container.component';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [TemplateComponent],
-  exports: [TemplateComponent],
   imports: [
-    MATERIAL_MODULES,
     RouterOutlet,
     NavComponent,
     HeaderComponent,
     AsyncPipe,
     ShellRoutingModule,
+    MatProgressSpinner,
   ],
+  declarations: [ShellContainerComponent],
 })
 export class ShellModule {}

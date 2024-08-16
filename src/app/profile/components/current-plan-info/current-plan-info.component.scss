@@ -1,0 +1,26 @@
+.subscription-info {
+  margin: 20px;
+  padding: 20px;
+}
+.material-icons.color_green {
+  color: #00ff00;
+}
+.material-icons.color_red {
+  color: #a32f2f;
+}
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.info-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.info-value {
+  text-align: right;
+  color: #555;
+}

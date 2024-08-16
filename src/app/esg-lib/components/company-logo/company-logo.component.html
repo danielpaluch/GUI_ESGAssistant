@@ -1,0 +1,17 @@
+<div class="logo">
+  @if (loading$ | async) {
+    <mat-spinner />
+  } @else {
+    @if (companyLogo$ | async; as logo) {
+      <img [ngSrc]="logo" height="128" width="128" alt="logo" priority />
+    } @else {
+      <img
+        ngSrc="assets/img/logo.png"
+        height="128"
+        width="128"
+        alt="logo"
+        priority
+      />
+    }
+  }
+</div>

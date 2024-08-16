@@ -1,0 +1,21 @@
+:host {
+  padding: 20px;
+
+  .empty-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .empty-text {
+    text-align: center;
+  }
+
+  .add-button {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+  }
+}

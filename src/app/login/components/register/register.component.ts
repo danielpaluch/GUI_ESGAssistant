@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MaterialModule } from 'src/app/material.module';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  standalone: true,
-  imports: [CommonModule, MaterialModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })

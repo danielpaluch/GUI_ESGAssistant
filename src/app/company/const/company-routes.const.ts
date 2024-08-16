@@ -8,6 +8,7 @@ export enum CompanyRoutesEnum {
   MANAGEMENT = 'management',
   SETTINGS = 'settings',
   ANALYSE = 'analyse',
+  PROFILE = 'profile',
 }
 
 export const companyRoutes: Routes = [
@@ -45,6 +46,11 @@ export const companyRoutes: Routes = [
           import('../../management/management.module').then(
             (m) => m.ManagementModule,
           ),
+      },
+      {
+        path: CompanyRoutesEnum.PROFILE,
+        loadChildren: () =>
+          import('../../profile/profile.module').then((m) => m.ProfileModule),
       },
       {
         path: CompanyRoutesEnum.SETTINGS,

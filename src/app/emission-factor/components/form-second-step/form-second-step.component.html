@@ -1,7 +1,7 @@
 <app-label-field [label]="'Type:'">
   <app-select-form-field
     [formControl]="typeControl"
-    [options]="(typeOptions$ | async) || []"
+    [options]="$typeOptions()"
     [displayWith]="label"
   />
 </app-label-field>
@@ -9,7 +9,7 @@
 <app-label-field [label]="'Category:'">
   <app-select-form-field
     [formControl]="categoryControl"
-    [options]="(categoryOptions$ | async) || []"
+    [options]="$categoryOptions()"
     [displayWith]="label"
   />
 </app-label-field>
@@ -17,7 +17,7 @@
 <app-label-field [label]="'Fuel:'">
   <app-select-form-field
     [formControl]="fuelControl"
-    [options]="(fuelOptions$ | async) || []"
+    [options]="$fuelOptions()"
     [displayWith]="label"
   />
 </app-label-field>
@@ -29,7 +29,7 @@
 <app-label-field [label]="'Unit:'">
   <app-select-form-field
     [formControl]="unitControl"
-    [options]="(unitOptions$ | async) || []"
+    [options]="$unitOptions()"
     [displayWith]="label"
   />
 </app-label-field>
@@ -39,12 +39,12 @@
   color="accent"
   style="align-self: center"
   [disabled]="secondStepForm.invalid"
-  (click)="addEmission(secondStepForm.value)"
+  (click)="addEmission()"
 >
   Add emission
 </button>
 <app-emission-form-table
-  [formValue]="thirdStepForm.value"
+  [formValue]="thirdStepForm.emissionsThirdStepValues"
   [showDeleteColumn]="true"
   (deleteRow)="deleteEmission($event)"
 />
